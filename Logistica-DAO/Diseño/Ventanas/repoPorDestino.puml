@@ -1,0 +1,22 @@
+@startsalt
+{S
+{* File | Acciones | Reportes | Ayuda }
+.
+  ^Destinos^^ Depositos 1^^ Tienda 2^^ Depositos 5^
+. 
+.
+.
+.
+{T#
+  + Origen       | Destino	     | Usuario	    
+  + Un lugar     | Otro          | iBerlot	   
+  + Lugar A      | Lugar B   	 | una persona  
+  + Lugar A      | Lugar C       | otra persona
+  + Lugar C    	 | Lugar B       | un alien     
+}
+
+.
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt

@@ -1,0 +1,15 @@
+@startsalt
+{+
+{* File | Acciones | Reportes | Ayuda }
+ {^"Extraccion"
+.
+  ^Tiende desde^ 
+.
+  ^Producto^ 
+.
+}
+
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt

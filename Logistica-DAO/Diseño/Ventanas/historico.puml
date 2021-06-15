@@ -1,0 +1,19 @@
+@startsalt
+{S
+{* File | Acciones | Reportes | Ayuda }
+.
+== Historico
+{T#
+  + Usuario      | Desde	| Hasta		| Tipo			| Producto		| Fecha
+  + iBerlot   	 | Otro		| Lugar C	| Deposito		| Una cosa 		| 01/01/ 1990 
+  + una persona	 | Lugar A	| -			| Extraccion	| Otra cosa 	| 01/01/ 1990 
+  + otra persona | Lugar C	| Lugar B	| Transferencia	| Chirimbolos	| 01/01/ 1990 
+  + un alien   	 | Otro		| -			| Extraccion	| Cachivaches	| 01/01/ 1990 
+  + ..   	 	 | ..		| ..		| ..			| ..			| .. 
+}
+
+.
+{[  OK   ]}
+
+}
+@endsalt

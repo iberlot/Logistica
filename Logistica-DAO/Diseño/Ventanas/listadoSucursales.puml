@@ -1,0 +1,18 @@
+@startsalt
+{S
+{* File | Acciones | Reportes | Ayuda }
+.
+== Sucursales
+{T#
+  + id       | Nombre	     | Tipo		 | Localidad	| Provincia       
+  + 1     	 | Otro          | Deposito	 | Merlo	    | Bs As 
+  + 2      	 | Lugar A   	 | Tienda	 | Lujan		| Bs As 
+  + 4      	 | Lugar C       | Deposito	 | Pilar		| Bs As 
+  + 3    	 | Lugar B       | Tienda	 | Europa	    | Jupiter 
+}
+
+.
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt

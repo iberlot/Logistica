@@ -1,0 +1,17 @@
+@startsalt
+{+
+{* File | Acciones | Reportes | Ayuda }
+ {^"Depositar"
+.
+  ^Tiende desde^ 
+.
+  ^Deposito hasta^ 
+.
+  ^Producto^ 
+.
+}
+
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt

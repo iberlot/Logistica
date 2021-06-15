@@ -1,0 +1,30 @@
+@startsalt
+{S
+{* File | Acciones | Reportes | Ayuda }
+.
+{
+  Numero de tienda | "                 "
+  fecha desde | ".     /    /"
+  decha hasta | ".     /    /"
+}
+.
+.
+{T#
+  + numero| Destino       | Producto	     | Usuario	    | Fecha       
+  + 1     | Otro          | Producto A	     | iBerlot	    | 01 / 01 / 1990 
+  + 2     | Lugar B   	  | Producto B	     | una persona  | 01 / 01 / 1990 
+  + 3     | Lugar C       | Producto C	     | otra persona | 01 / 01 / 1990 
+  + 4     | Lugar B       | Producto A	     | un alien     | 01 / 01 / 1990 
+  + 5     | Otro          | Producto G	     | iBerlot	    | 01 / 01 / 1990 
+  + 6     | Lugar B   	  | Producto E	     | una persona  | 01 / 01 / 1990 
+  + 7     | Lugar C       | Producto B	     | otra persona | 01 / 01 / 1990 
+  + 8     | Lugar B       | Producto T	     | un alien     | 01 / 01 / 1990 
+  + 9     | Otro          | Producto E	     | iBerlot	    | 01 / 01 / 1990 
+  + 10    | Lugar B   	  | Producto 4	     | una persona  | 01 / 01 / 1990 
+}
+
+.
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt

@@ -1,0 +1,10 @@
+@startsalt
+{+Alerta
+.
+  Mensaje de error, confirmacion o del sistema 
+.
+
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt

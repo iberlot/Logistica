@@ -1,0 +1,63 @@
+@startuml
+class Tiendas [[java:Dominio.Tiendas]] {
+	+Tiendas()
+	+extraccion(producto: Productos): boolean
+	+depositar(deposito_hasta: Depositos, producto: Productos): boolean
+}
+
+class Usuarios [[java:Dominio.Usuarios]] {
+	-nombre: String
+	-apellido: String
+	-dni: long
+	-sucursal: Sucursales
+	+Usuarios()
+}
+
+class Productos [[java:Dominio.Productos]] {
+	#nombre: String
+	#descripcion: String
+	#precio: float
+}
+
+class Depositos [[java:Dominio.Depositos]] {
+	+Depositos()
+	+transferir(deposito_hasta: Depositos, producto: Productos): boolean
+}
+
+abstract class Sucursales [[java:Dominio.Sucursales]] {
+	#id: int
+	#nombre: String
+	#provincia: String
+	#localidades: String
+	#productos: ArrayList<Productos>
+	#{static} ultimo_identificador: int
+	+{static} getUltimo_identificador(): int
+	+{static} setUltimo_identificador(ultimo_identificador: int): void
+	+{static} agregaUltimo_identificador(ultimo_identificador: int): void
+	+agregarPrducto(producto: Productos): boolean
+	+quitarPrducto(producto: Productos): boolean
+}
+
+abstract class Transacciones [[java:negocio.dominio.Transacciones]] {
+	-fecha: Calendar
+	-desde: Sucursales
+	-hasta: Sucursales
+	-producto: Productos
+	-usuario: Usuarios
+	-tipo: String
+	-{static} tipos: String[]
+	+Transacciones()
+	+setTipo(tipo: String): void
+}
+
+Usuarios --> "1" Sucursales : sucursal
+Sucursales <|-- Depositos
+Sucursales <|-- Tiendas
+Sucursales -> "*" Productos : productos
+
+Transacciones --> "1" Sucursales : desde
+Transacciones --> "1" Sucursales : hasta
+Transacciones --> "1" Productos : producto
+Transacciones --> "1" Usuarios : usuario
+
+@enduml

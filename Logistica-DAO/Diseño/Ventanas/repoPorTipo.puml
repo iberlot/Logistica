@@ -1,0 +1,20 @@
+@startsalt
+{S
+{* File | Acciones | Reportes | Ayuda }
+.
+  ^Tipo Deposito^^ Depositos^^ Tienda^ 
+.
+.
+{T#
+  + Origen       | Destino	     | Usuario	    | Fecha       
+  + Un lugar     | Otro          | iBerlot	    | 01/01/ 1990 
+  + Lugar A      | Lugar B   	 | una persona  | 01/01/ 1990 
+  + Lugar A      | Lugar C       | otra persona | 01/01/ 1990 
+  + Lugar C    	 | Lugar B       | un alien     | 01/01/ 1990 
+}
+
+.
+{[Cancel] | [  OK   ]}
+
+}
+@endsalt
