@@ -19,7 +19,6 @@ package view.events;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 
 import javax.swing.JOptionPane;
 
@@ -51,32 +50,34 @@ public class EventosFramePrincipal implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource().equals(this.principal.getItemMenuAccionesTransferir())) {
-
-			principal.getPanelContenedor().removeAll();
-			principal.getPanelContenedor().repaint();
-
-			ControlerTransferencias controlador = new ControlerTransferencias();
-
-			principal.getContentPane()
-					.add((Component) controlador.initPanel(datos.getSucursales(), datos.getProductos()));
-
-		} else if (e.getSource().equals(this.principal.getItemMenuFileCerrar())) {
+		if (e.getSource().equals(this.principal.getItemMenuFileCerrar())) {
 
 			int opcion = JOptionPane.showConfirmDialog(this.principal, "¿Seguro que desea salir?", "Salir",
 					JOptionPane.YES_NO_OPTION);
 			if (opcion == 0) {
 				System.exit(0);
 			}
+		} else if (e.getSource().equals(this.principal.getItemMenuAccionesTransferir())) {
+
+			principal.getPanelContenedor().removeAll();
+			principal.getPanelContenedor().repaint();
+
+			ControlerTransferencias controlador = new ControlerTransferencias();
+			controlador.setProductos(datos.getProductos());
+			controlador.setSucursales(datos.getSucursales());
+
+			principal.getContentPane().add((Component) controlador.initPanel());
+
 		} else if (e.getSource().equals(this.principal.getItemMenuAccionesExtraer())) {
 
 			principal.getPanelContenedor().removeAll();
 			principal.getPanelContenedor().repaint();
 
 			ControlerExtracciones controlador = new ControlerExtracciones();
+			controlador.setProductos(datos.getProductos());
+			controlador.setSucursales(datos.getSucursales());
 
-			principal.getContentPane()
-					.add((Component) controlador.initPanel(datos.getSucursales(), datos.getProductos()));
+			principal.getContentPane().add((Component) controlador.initPanel());
 
 		} else if (e.getSource().equals(this.principal.getItemMenuAccionesDepositar())) {
 
@@ -84,9 +85,10 @@ public class EventosFramePrincipal implements ActionListener {
 			principal.getPanelContenedor().repaint();
 
 			ControlerDepositar controlador = new ControlerDepositar();
+			controlador.setProductos(datos.getProductos());
+			controlador.setSucursales(datos.getSucursales());
 
-			principal.getContentPane()
-					.add((Component) controlador.initPanel(datos.getSucursales(), datos.getProductos()));
+			principal.getContentPane().add((Component) controlador.initPanel());
 
 		} else if (e.getSource().equals(this.principal.getItemMenuReportesHistorial())) {
 
@@ -95,7 +97,9 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerTransaccionesHistorico controlador = new ControlerTransaccionesHistorico();
 
-			principal.getContentPane().add((Component) controlador.initPanel(datos.getTransacciones()));
+			controlador.setTransacciones(datos.getTransacciones());
+
+			principal.getContentPane().add((Component) controlador.initPanel());
 
 		} else if (e.getSource().equals(this.principal.getItemMenuReportesTipo())) {
 
@@ -104,7 +108,9 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerReportesTipo controlador = new ControlerReportesTipo();
 
-			principal.getContentPane().add((Component) controlador.initPanel(datos.getTransacciones()));
+			controlador.setTransacciones(datos.getTransacciones());
+
+			principal.getContentPane().add((Component) controlador.initPanel());
 
 		} else if (e.getSource().equals(this.principal.getItemMenuReportesDeposito())) {
 
@@ -113,8 +119,10 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerReportesDestino controlador = new ControlerReportesDestino();
 
-			principal.getContentPane()
-					.add((Component) controlador.initPanel(datos.getTransacciones(), datos.getSucursales()));
+			controlador.setTransacciones(datos.getTransacciones());
+			controlador.setSucursales(datos.getSucursales());
+
+			principal.getContentPane().add((Component) controlador.initPanel());
 
 		} else if (e.getSource().equals(this.principal.getItemMenuReportesTienda())) {
 
@@ -123,13 +131,10 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerReportesFecha controlador = new ControlerReportesFecha();
 
-			try {
-				principal.getContentPane()
-						.add((Component) controlador.initPanel(datos.getTransacciones(), datos.getSucursales()));
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			controlador.setTransacciones(datos.getTransacciones());
+			controlador.setSucursales(datos.getSucursales());
+
+			principal.getContentPane().add((Component) controlador.initPanel());
 
 		}
 //		else if (e.getSource().equals(this.principal.getItemMenuAyudaVersion())) {

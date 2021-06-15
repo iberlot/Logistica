@@ -20,9 +20,8 @@ import java.awt.EventQueue;
 import java.io.FileReader;
 import java.util.Properties;
 
-import javax.swing.JOptionPane;
-
 import controller.ControlerPrincipal;
+import exepciones.ValidacionesException;
 
 /**
  * @author IVANB
@@ -48,7 +47,7 @@ public final class Logistica {
 					principal.initFrame();
 
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
+					ValidacionesException.mostrarMensaje(e);
 				}
 			}
 		});

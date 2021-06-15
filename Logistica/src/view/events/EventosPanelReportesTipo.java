@@ -43,6 +43,9 @@ public class EventosPanelReportesTipo implements ActionListener {
 		if (e.getSource().equals(this.panel.getBtnCancelar())) {
 			this.panel.removeAll();
 			this.panel.setVisible(false);
+		} else if (e.getSource().equals(this.panel.getComboTipos())) {
+
+			control.rellenaTabla(this.panel.getComboTipos().getSelectedItem());
 		}
 	}
 

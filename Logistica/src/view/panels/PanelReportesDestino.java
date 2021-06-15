@@ -18,9 +18,8 @@ package view.panels;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -48,6 +47,7 @@ public class PanelReportesDestino extends JPanel implements iPanels {
 	private DefaultTableModel tableModel = new DefaultTableModel(columnas, 0);
 
 	private JButton btnCancelar = new JButton("Cancelar");
+	private JButton btnExportar = new JButton("Exportar");
 
 	private EventosPanelReportesDestino evento;
 
@@ -80,6 +80,8 @@ public class PanelReportesDestino extends JPanel implements iPanels {
 		JPanel botonera = new JPanel();
 		add(botonera, BorderLayout.SOUTH);
 		botonera.setLayout(new GridLayout(1, 2));
+		botonera.add(btnExportar);
+		btnExportar.addActionListener(this.evento);
 		botonera.add(btnCancelar);
 		btnCancelar.addActionListener(this.evento);
 
@@ -99,13 +101,7 @@ public class PanelReportesDestino extends JPanel implements iPanels {
 				comboDestino.addItem(sucursal);
 			}
 
-			comboDestino.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					rellenaTabla((comboDestino.getSelectedItem()), transacciones);
-				}
-
-			});
+			comboDestino.addActionListener(this.evento);
 
 			pFormulario.add(comboDestino);
 
@@ -129,24 +125,16 @@ public class PanelReportesDestino extends JPanel implements iPanels {
 
 	}
 
-	private void rellenaTabla(Object selectedItem, ArrayList<Transacciones> transacciones) {
+	public void rellenaTabla(List<Object[]> transacciones) {
 		// Se borran los valores previos
 		int e = tableModel.getRowCount();
-
 		for (int i = 0; i < e; i++) {
 			tableModel.removeRow(0);
 		}
 
-		for (Transacciones transaccion : transacciones) {
+		for (Object[] transaccion : transacciones) {
 
-			// XXX revisar que sea el hasta y no el desde
-			if (transaccion.getHasta().equals((selectedItem))) {
-
-				Object[] data = { transaccion.getUsuario().getDni(), transaccion.getDesde().getNombre(),
-						transaccion.getHasta().getNombre() };
-
-				tableModel.addRow(data);
-			}
+			tableModel.addRow(transaccion);
 		}
 	}
 

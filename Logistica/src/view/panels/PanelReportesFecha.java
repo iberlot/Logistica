@@ -20,6 +20,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -49,12 +50,12 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 	private JLabel lblFechaHasta = new JLabel("Fecha Hasta:");
 	private JFormattedTextField fechaHasta;
 
-	private String[] columnas = { "Numero", "Hasta", "Producto", "Usuario", "Fecha" };
+	private String[] columnas = { " ", "Numero", "Hasta", "Producto", "Usuario", "Fecha" };
 	private JTable tabla;
 	private DefaultTableModel tableModel = new DefaultTableModel(columnas, 0);
 
 	private JButton btnCancelar = new JButton("Cancelar");
-	private JButton btnAceptar = new JButton("Aceptar");
+	private JButton btnExportar = new JButton("Exportar");
 
 	private EventosPanelReportesFecha evento;
 
@@ -90,10 +91,10 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 		JPanel botonera = new JPanel();
 		add(botonera, BorderLayout.SOUTH);
 		botonera.setLayout(new GridLayout(1, 2));
-		botonera.add(btnAceptar);
+		botonera.add(btnExportar);
+		btnExportar.addActionListener(this.evento);
 		botonera.add(btnCancelar);
 		btnCancelar.addActionListener(this.evento);
-		btnAceptar.addActionListener(this.evento);
 
 		/* ** Cuerpo principal ** */
 		JPanel pFormulario = new JPanel();
@@ -106,11 +107,15 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 			pFormulario.add(datos);
 
 		} else {
-			nroTienda = new JFormattedTextField(new MaskFormatter("#####"));
-			nroTienda.setColumns(5);
+			MaskFormatter mascara = new MaskFormatter("##");
 
-			fechaDesde = new JFormattedTextField(new MaskFormatter("##-##-####"));
-			fechaHasta = new JFormattedTextField(new MaskFormatter("##-##-####"));
+			nroTienda = new JFormattedTextField(mascara);
+			nroTienda.setColumns(2);
+			nroTienda.setInputVerifier(getInputVerifier());
+			nroTienda.setText("01");
+
+			fechaDesde = new JFormattedTextField(new MaskFormatter("####/##/##"));
+			fechaHasta = new JFormattedTextField(new MaskFormatter("####/##/##"));
 
 			pFormulario.add(lblNroTienda);
 			pFormulario.add(nroTienda);
@@ -118,6 +123,13 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 			pFormulario.add(fechaDesde);
 			pFormulario.add(lblFechaHasta);
 			pFormulario.add(fechaHasta);
+
+			nroTienda.addActionListener(evento);
+			nroTienda.addFocusListener(evento);
+			fechaDesde.addActionListener(evento);
+			fechaDesde.addFocusListener(evento);
+			fechaHasta.addActionListener(evento);
+			fechaHasta.addFocusListener(evento);
 
 			int i = 0;
 
@@ -127,16 +139,12 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 				if (i == 9) {
 					break;
 				}
-				// XXX revisar que sea el hasta y no el desde
-//				if (Integer.parseInt(nroTienda.getText()) == transaccion.getDesde().getId()) {
 
-				Object[] data = { i + 1, transaccion.getHasta().getNombre(), transaccion.getProducto().getNombre(),
-						transaccion.getUsuario().getDni(), transaccion.getFechaString() };
-
-				i++;
+				Object[] data = { i++, transaccion.getDesde().getId(), transaccion.getDesde().getNombre(),
+						transaccion.getProducto().getNombre(), transaccion.getUsuario().getDni(),
+						transaccion.getFechaString() };
 
 				tableModel.addRow(data);
-//				}
 			}
 
 			tabla = new JTable(tableModel);
@@ -146,6 +154,19 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 			pFormulario.add(scrollPane);
 		}
 
+	}
+
+	public void rellenaTabla(List<Object[]> transacciones) {
+		// Se borran los valores previos
+		int e = tableModel.getRowCount();
+		for (int i = 0; i < e; i++) {
+			tableModel.removeRow(0);
+		}
+
+		for (Object[] transaccion : transacciones) {
+
+			tableModel.addRow(transaccion);
+		}
 	}
 
 	@Override
@@ -229,6 +250,13 @@ public class PanelReportesFecha extends JPanel implements iPanels {
 	 */
 	public EventosPanelReportesFecha getEvento() {
 		return evento;
+	}
+
+	/**
+	 * @return el campo btnExportar
+	 */
+	public JButton getBtnExportar() {
+		return btnExportar;
 	}
 
 }

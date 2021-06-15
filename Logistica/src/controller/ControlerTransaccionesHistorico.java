@@ -28,7 +28,8 @@ import view.panels.PanelTransaccionesHistorico;
  */
 public class ControlerTransaccionesHistorico implements IController {
 
-	PanelTransaccionesHistorico vista;
+	private ArrayList<Transacciones> transacciones;
+	private PanelTransaccionesHistorico vista;
 
 	/**
 	 */
@@ -36,17 +37,10 @@ public class ControlerTransaccionesHistorico implements IController {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Object initPanel(ArrayList<Transacciones> transacciones) {
-		vista = new PanelTransaccionesHistorico(transacciones);
-		this.vista.getEvento().setControl(this);
-		this.vista.setVisible(true);
-
-		return this.vista;
-	}
-
 	@Override
 	public Object initPanel() {
-		vista = new PanelTransaccionesHistorico();
+		vista = new PanelTransaccionesHistorico(transacciones);
+		this.vista.getEvento().setControl(this);
 		this.vista.setVisible(true);
 
 		return this.vista;
@@ -64,6 +58,20 @@ public class ControlerTransaccionesHistorico implements IController {
 	 */
 	public void setVista(PanelTransaccionesHistorico vista) {
 		this.vista = vista;
+	}
+
+	/**
+	 * @return el campo transacciones
+	 */
+	public ArrayList<Transacciones> getTransacciones() {
+		return transacciones;
+	}
+
+	/**
+	 * @param transacciones El parametro transacciones para setear
+	 */
+	public void setTransacciones(ArrayList<Transacciones> transacciones) {
+		this.transacciones = transacciones;
 	}
 
 }

@@ -22,7 +22,7 @@ import java.util.Calendar;
  * @author IVANB
  *
  */
-public class Transacciones {
+public class Transacciones implements Comparable<Transacciones> {
 
 	private Calendar fecha;
 	private Sucursales desde;
@@ -60,6 +60,11 @@ public class Transacciones {
 
 	public String getFechaString() {
 		return String.format("%04d-%02d-%02d", this.getFecha().get(Calendar.YEAR),
+				this.getFecha().get(Calendar.MONTH) + 1, this.getFecha().get(Calendar.DAY_OF_MONTH));
+	}
+
+	public String getFechaNumero() {
+		return String.format("%04d%02d%02d", this.getFecha().get(Calendar.YEAR),
 				this.getFecha().get(Calendar.MONTH) + 1, this.getFecha().get(Calendar.DAY_OF_MONTH));
 	}
 
@@ -166,6 +171,11 @@ public class Transacciones {
 	 */
 	public static String[] getTipos() {
 		return tipos;
+	}
+
+	@Override
+	public int compareTo(Transacciones o) {
+		return getFecha().compareTo(o.getFecha());
 	}
 
 }

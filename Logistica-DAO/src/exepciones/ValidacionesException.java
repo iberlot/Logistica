@@ -18,6 +18,8 @@ package exepciones;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 /**
  * @author IVANB
  *
@@ -56,4 +58,7 @@ public class ValidacionesException extends IOException {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static void mostrarMensaje(Exception e) {
+		JOptionPane.showMessageDialog(null, e.getMessage());
+	}
 }

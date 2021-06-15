@@ -44,6 +44,9 @@ public class EventosPanelReportesDestino implements ActionListener {
 		if (e.getSource().equals(this.panel.getBtnCancelar())) {
 			this.panel.removeAll();
 			this.panel.setVisible(false);
+		} else if (e.getSource().equals(this.panel.getComboDestino())) {
+
+			control.rellenaTabla(this.panel.getComboDestino().getSelectedItem());
 		}
 	}
 

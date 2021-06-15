@@ -17,7 +17,10 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import exepciones.ValidacionesException;
 import interfaces.IController;
 import negocio.dominio.Transacciones;
 import view.panels.PanelReportesTipo;
@@ -28,7 +31,8 @@ import view.panels.PanelReportesTipo;
  */
 public class ControlerReportesTipo implements IController {
 
-	PanelReportesTipo vista;
+	private ArrayList<Transacciones> transacciones;
+	private PanelReportesTipo vista;
 
 	/**
 	 * 
@@ -37,7 +41,8 @@ public class ControlerReportesTipo implements IController {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Object initPanel(ArrayList<Transacciones> transacciones) {
+	@Override
+	public Object initPanel() {
 		vista = new PanelReportesTipo(transacciones);
 		this.vista.getEvento().setControl(this);
 		this.vista.setVisible(true);
@@ -45,12 +50,28 @@ public class ControlerReportesTipo implements IController {
 		return this.vista;
 	}
 
-	@Override
-	public Object initPanel() {
-		vista = new PanelReportesTipo();
-		this.vista.setVisible(true);
+	public void rellenaTabla(Object selectedItem) {
+		try {
 
-		return this.vista;
+			List<Transacciones> transa = transacciones.stream().filter(t -> (t.getTipo().equals(selectedItem))).sorted()
+					.collect(Collectors.toList());
+
+			List<Object[]> objetos = new ArrayList<>();
+
+			for (Transacciones transaccion : transa) {
+
+				Object[] data = { transaccion.getDesde().getNombre(), transaccion.getHasta().getNombre(),
+						transaccion.getUsuario().getDni(), transaccion.getFechaString() };
+
+				objetos.add(data);
+			}
+
+			vista.rellenaTabla(objetos);
+
+		} catch (Exception e) {
+			ValidacionesException.mostrarMensaje(e);
+		}
+
 	}
 
 	/**
@@ -65,6 +86,20 @@ public class ControlerReportesTipo implements IController {
 	 */
 	public void setVista(PanelReportesTipo vista) {
 		this.vista = vista;
+	}
+
+	/**
+	 * @return el campo transacciones
+	 */
+	public ArrayList<Transacciones> getTransacciones() {
+		return transacciones;
+	}
+
+	/**
+	 * @param transacciones El parametro transacciones para setear
+	 */
+	public void setTransacciones(ArrayList<Transacciones> transacciones) {
+		this.transacciones = transacciones;
 	}
 
 }

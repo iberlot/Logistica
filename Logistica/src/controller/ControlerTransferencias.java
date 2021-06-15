@@ -30,7 +30,9 @@ import view.panels.PanelTransferencias;
  */
 public class ControlerTransferencias implements IController {
 
-	PanelTransferencias vista;
+	private ArrayList<Productos> productos;
+	private ArrayList<Sucursales> sucursales;
+	private PanelTransferencias vista;
 
 	/**
 	 * 
@@ -39,18 +41,10 @@ public class ControlerTransferencias implements IController {
 		// TODO Auto-generated constructor stub
 	}
 
-	// XXX deberia traer los datos de por parametro o directamente del DAO?
-	public Object initPanel(ArrayList<Sucursales> sucursales, ArrayList<Productos> productos) {
-		vista = new PanelTransferencias(sucursales, productos);
-		this.vista.getEvento().setControl(this);
-		this.vista.setVisible(true);
-
-		return this.vista;
-	}
-
 	@Override
 	public Object initPanel() {
-		vista = new PanelTransferencias();
+		vista = new PanelTransferencias(sucursales, productos);
+		this.vista.getEvento().setControl(this);
 		this.vista.setVisible(true);
 
 		return this.vista;
@@ -84,6 +78,34 @@ public class ControlerTransferencias implements IController {
 
 		vista.removeAll();
 		vista.setVisible(false);
+	}
+
+	/**
+	 * @return el campo productos
+	 */
+	public ArrayList<Productos> getProductos() {
+		return productos;
+	}
+
+	/**
+	 * @param productos El parametro productos para setear
+	 */
+	public void setProductos(ArrayList<Productos> productos) {
+		this.productos = productos;
+	}
+
+	/**
+	 * @return el campo sucursales
+	 */
+	public ArrayList<Sucursales> getSucursales() {
+		return sucursales;
+	}
+
+	/**
+	 * @param sucursales El parametro sucursales para setear
+	 */
+	public void setSucursales(ArrayList<Sucursales> sucursales) {
+		this.sucursales = sucursales;
 	}
 
 }

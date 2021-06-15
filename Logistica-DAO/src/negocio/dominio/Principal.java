@@ -78,12 +78,18 @@ public class Principal {
 
 		for (int i = 0; i < ((int) (Math.random() * ((5 + 50) - 1))); i++) {
 
-			transacciones.add(new Transacciones(Calendar.getInstance(),
+			Calendar f = Calendar.getInstance();
 
-					sucursales.get((int) (Math.random() * ((0 + sucursales.size())))),
-					sucursales.get((int) (Math.random() * ((0 + sucursales.size())))),
-					productos.get((int) (Math.random() * ((0 + productos.size())))),
-					usuarios.get((int) (Math.random() * ((0 + usuarios.size())))),
+			int a = (int) (1990 + (Math.random() * ((30))));
+			int m = (int) (Math.random() * (11));
+			int d = (int) (1 + (Math.random() * ((28))));
+
+			f.set(a, m, d);
+
+			transacciones.add(new Transacciones(f, sucursales.get((int) (Math.random() * ((sucursales.size())))),
+					sucursales.get((int) (Math.random() * ((sucursales.size())))),
+					productos.get((int) (Math.random() * ((productos.size())))),
+					usuarios.get((int) (Math.random() * ((usuarios.size())))),
 					Transacciones.getTipos()[(int) (Math.random() * ((1 + Transacciones.getTipos().length) - 1))]));
 		}
 

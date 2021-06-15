@@ -31,7 +31,9 @@ import view.panels.PanelExtracciones;
  */
 public class ControlerExtracciones implements IController {
 
-	PanelExtracciones vista;
+	private ArrayList<Productos> productos;
+	private ArrayList<Sucursales> sucursales;
+	private PanelExtracciones vista;
 
 	/**
 	 * 
@@ -40,7 +42,8 @@ public class ControlerExtracciones implements IController {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Object initPanel(ArrayList<Sucursales> sucursales, ArrayList<Productos> productos) {
+	@Override
+	public Object initPanel() {
 		vista = new PanelExtracciones(sucursales, productos);
 		this.vista.getEvento().setControl(this);
 		this.vista.setVisible(true);
@@ -64,14 +67,6 @@ public class ControlerExtracciones implements IController {
 		vista.setVisible(false);
 	}
 
-	@Override
-	public Object initPanel() {
-		vista = new PanelExtracciones();
-		this.vista.setVisible(true);
-
-		return this.vista;
-	}
-
 	/**
 	 * @return el campo vista
 	 */
@@ -84,6 +79,34 @@ public class ControlerExtracciones implements IController {
 	 */
 	public void setVista(PanelExtracciones vista) {
 		this.vista = vista;
+	}
+
+	/**
+	 * @return el campo productos
+	 */
+	public ArrayList<Productos> getProductos() {
+		return productos;
+	}
+
+	/**
+	 * @param productos El parametro productos para setear
+	 */
+	public void setProductos(ArrayList<Productos> productos) {
+		this.productos = productos;
+	}
+
+	/**
+	 * @return el campo sucursales
+	 */
+	public ArrayList<Sucursales> getSucursales() {
+		return sucursales;
+	}
+
+	/**
+	 * @param sucursales El parametro sucursales para setear
+	 */
+	public void setSucursales(ArrayList<Sucursales> sucursales) {
+		this.sucursales = sucursales;
 	}
 
 }
