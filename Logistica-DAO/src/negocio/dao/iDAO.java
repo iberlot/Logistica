@@ -16,16 +16,30 @@
  */
 package negocio.dao;
 
+import java.util.ArrayList;
+
 /**
  * @author IVANB
  *
  */
-public interface iDAO {
+public interface iDAO<T> {
 
 	public Object add(Object elemento);
 
 	public Object get(Object elemento);
 
 	public void save();
+
+	public ArrayList<T> getLista();
+
+	/**
+	 * @param lista
+	 */
+	void saveLista(ArrayList<T> lista);
+
+	/**
+	 * @param cosas
+	 */
+	void saveOnFile(ArrayList<T> cosas);
 
 }

@@ -24,12 +24,12 @@ import javax.swing.JOptionPane;
 
 import controller.ControlerDepositar;
 import controller.ControlerExtracciones;
+import controller.ControlerPrincipal;
 import controller.ControlerReportesDestino;
 import controller.ControlerReportesFecha;
 import controller.ControlerReportesTipo;
 import controller.ControlerTransaccionesHistorico;
 import controller.ControlerTransferencias;
-import negocio.dominio.Principal;
 import view.frame.FramePrincipal;
 
 /**
@@ -39,9 +39,9 @@ import view.frame.FramePrincipal;
 public class EventosFramePrincipal implements ActionListener {
 
 	private FramePrincipal principal;
+	private ControlerPrincipal datos;
 
-	// FIXME estoy seguro de que esto no es asi pero no se me ocurre como resolverlo
-	private Principal datos;
+	// private Principal datos;
 
 	public EventosFramePrincipal(FramePrincipal principal) {
 		this.principal = principal;
@@ -52,9 +52,15 @@ public class EventosFramePrincipal implements ActionListener {
 
 		if (e.getSource().equals(this.principal.getItemMenuFileCerrar())) {
 
-			int opcion = JOptionPane.showConfirmDialog(this.principal, "¿Seguro que desea salir?", "Salir",
+			int opcion = JOptionPane.showConfirmDialog(this.principal, "¿Seguro que desea guardar y salir?", "Salir",
 					JOptionPane.YES_NO_OPTION);
 			if (opcion == 0) {
+				try {
+					datos.guardarModifiaciones();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 		} else if (e.getSource().equals(this.principal.getItemMenuAccionesTransferir())) {
@@ -63,8 +69,8 @@ public class EventosFramePrincipal implements ActionListener {
 			principal.getPanelContenedor().repaint();
 
 			ControlerTransferencias controlador = new ControlerTransferencias();
-			controlador.setProductos(datos.getProductos());
-			controlador.setSucursales(datos.getSucursales());
+			controlador.setProductos(datos.getModelo().getProductos());
+			controlador.setSucursales(datos.getModelo().getSucursales());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -74,8 +80,8 @@ public class EventosFramePrincipal implements ActionListener {
 			principal.getPanelContenedor().repaint();
 
 			ControlerExtracciones controlador = new ControlerExtracciones();
-			controlador.setProductos(datos.getProductos());
-			controlador.setSucursales(datos.getSucursales());
+			controlador.setProductos(datos.getModelo().getProductos());
+			controlador.setSucursales(datos.getModelo().getSucursales());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -85,8 +91,8 @@ public class EventosFramePrincipal implements ActionListener {
 			principal.getPanelContenedor().repaint();
 
 			ControlerDepositar controlador = new ControlerDepositar();
-			controlador.setProductos(datos.getProductos());
-			controlador.setSucursales(datos.getSucursales());
+			controlador.setProductos(datos.getModelo().getProductos());
+			controlador.setSucursales(datos.getModelo().getSucursales());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -97,7 +103,7 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerTransaccionesHistorico controlador = new ControlerTransaccionesHistorico();
 
-			controlador.setTransacciones(datos.getTransacciones());
+			controlador.setTransacciones(datos.getModelo().getTransacciones());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -108,7 +114,7 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerReportesTipo controlador = new ControlerReportesTipo();
 
-			controlador.setTransacciones(datos.getTransacciones());
+			controlador.setTransacciones(datos.getModelo().getTransacciones());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -119,8 +125,8 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerReportesDestino controlador = new ControlerReportesDestino();
 
-			controlador.setTransacciones(datos.getTransacciones());
-			controlador.setSucursales(datos.getSucursales());
+			controlador.setTransacciones(datos.getModelo().getTransacciones());
+			controlador.setSucursales(datos.getModelo().getSucursales());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -131,8 +137,8 @@ public class EventosFramePrincipal implements ActionListener {
 
 			ControlerReportesFecha controlador = new ControlerReportesFecha();
 
-			controlador.setTransacciones(datos.getTransacciones());
-			controlador.setSucursales(datos.getSucursales());
+			controlador.setTransacciones(datos.getModelo().getTransacciones());
+			controlador.setSucursales(datos.getModelo().getSucursales());
 
 			principal.getContentPane().add((Component) controlador.initPanel());
 
@@ -161,7 +167,7 @@ public class EventosFramePrincipal implements ActionListener {
 	/**
 	 * @param datos El parametro datos para setear
 	 */
-	public void setDatos(Principal datos) {
+	public void setDatos(ControlerPrincipal datos) {
 		this.datos = datos;
 	}
 

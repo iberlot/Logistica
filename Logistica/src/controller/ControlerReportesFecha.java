@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 import exepciones.ValidacionesException;
 import interfaces.IController;
+import negocio.dao.factory.FactoriDAO;
 import negocio.dominio.Sucursales;
 import negocio.dominio.Transacciones;
 import view.panels.PanelReportesFecha;
@@ -37,6 +38,7 @@ public class ControlerReportesFecha implements IController {
 
 	private ArrayList<Transacciones> transacciones;
 	private ArrayList<Sucursales> sucursales;
+	private FactoriDAO daos = new FactoriDAO();
 
 	/**
 	 * 
@@ -51,7 +53,6 @@ public class ControlerReportesFecha implements IController {
 			vista = new PanelReportesFecha(sucursales, transacciones);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			System.out.println("todos putos");
 		}
 		this.vista.getEvento().setControl(this);
 		this.vista.setVisible(true);
@@ -119,6 +120,55 @@ public class ControlerReportesFecha implements IController {
 			List<Object[]> objetos = armaLista(transa);
 
 			vista.rellenaTabla(objetos);
+
+		} catch (Exception e) {
+			ValidacionesException.mostrarMensaje(e);
+		}
+
+	}
+
+	public void expontar(int tienda, String fDesde, String fHasta) {
+		try {
+			daos.setElemento("docReporteFecha");
+
+			if ((fDesde != null && fHasta != null) && Long.parseLong(fHasta) < Long.parseLong(fDesde)) {
+				throw new Exception("La fecha desde es mayor que hasta");
+			}
+
+			List<Transacciones> transa = transacciones;
+
+			if (tienda > 0) {
+				transa = transa.stream().filter(t -> (t.getDesde().getId() == tienda)).sorted()
+						.collect(Collectors.toList());
+			}
+
+			if (fDesde != null) {
+				transa = transa.stream().filter(t -> (Long.parseLong(t.getFechaNumero()) >= Long.parseLong(fDesde)))
+						.sorted().collect(Collectors.toList());
+			}
+
+			if (fHasta != null) {
+				transa = transa.stream().filter(t -> (Long.parseLong(t.getFechaNumero()) <= Long.parseLong(fHasta)))
+						.sorted().collect(Collectors.toList());
+			}
+
+			ArrayList<String[]> objetos = new ArrayList<>();
+			String[] columnas = { " ", "Numero", "Hasta", "Producto", "Usuario", "Fecha" };
+			objetos.add(columnas);
+
+			int i = 0;
+			for (Transacciones transaccion : transa) {
+				if (i == 9) {
+					break;
+				}
+				String[] data = { Integer.toString(i++), Integer.toString(transaccion.getDesde().getId()),
+						transaccion.getDesde().getNombre(), transaccion.getProducto().getNombre(),
+						Long.toString(transaccion.getUsuario().getDni()), transaccion.getFechaString() };
+
+				objetos.add(data);
+			}
+
+			daos.getDao("transacciones_txt").saveOnFile(objetos);
 
 		} catch (Exception e) {
 			ValidacionesException.mostrarMensaje(e);

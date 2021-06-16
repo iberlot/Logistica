@@ -22,6 +22,8 @@ package negocio.dominio;
  */
 public class Depositos extends Sucursales {
 
+	private static final long serialVersionUID = 15;
+
 	/**
 	 * 
 	 */

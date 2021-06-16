@@ -1,0 +1,5 @@
+Usuario|Desde|Hasta|Tipo|Producto|Fecha|
+30868615|moon|casa|depositar|una cosa|2001-09-07|
+30868615|casa|Aca|transferir|pendorcho|2014-04-20|
+30868615|Y Aca|Y Aca|transferir|pendorcho|1998-03-09|
+31343046|casa|El otooto|transferir|chirimbolo|2014-03-16|

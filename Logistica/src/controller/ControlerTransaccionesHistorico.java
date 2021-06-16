@@ -19,6 +19,7 @@ package controller;
 import java.util.ArrayList;
 
 import interfaces.IController;
+import negocio.dao.factory.FactoriDAO;
 import negocio.dominio.Transacciones;
 import view.panels.PanelTransaccionesHistorico;
 
@@ -30,6 +31,7 @@ public class ControlerTransaccionesHistorico implements IController {
 
 	private ArrayList<Transacciones> transacciones;
 	private PanelTransaccionesHistorico vista;
+	private FactoriDAO daos = new FactoriDAO();
 
 	/**
 	 */
@@ -44,6 +46,27 @@ public class ControlerTransaccionesHistorico implements IController {
 		this.vista.setVisible(true);
 
 		return this.vista;
+	}
+
+	public void expontar() throws Exception {
+
+		daos.setElemento("docHistorico");
+
+		ArrayList<String[]> cosas = new ArrayList<>();
+		String[] columnas = { "Usuario", "Desde", "Hasta", "Tipo", "Producto", "Fecha" };
+
+		cosas.add(columnas);
+
+		for (Transacciones transaccion : transacciones) {
+
+			String[] data = { Long.toString(transaccion.getUsuario().getDni()), transaccion.getDesde().getNombre(),
+					transaccion.getHasta().getNombre(), transaccion.getTipo(), transaccion.getProducto().getNombre(),
+					transaccion.getFechaString() };
+			cosas.add(data);
+		}
+
+		daos.getDao("transacciones_txt").saveOnFile(cosas);
+
 	}
 
 	/**

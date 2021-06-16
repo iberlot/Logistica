@@ -8,14 +8,14 @@
  * totalHorasPerdidasAqui = 0
  */
 /**
- * @since 13 jun. 2021
+ * @since 15 jun. 2021
  * @user IVANB
  * @name package-info.java
- * @package negocio.dao.texto
+ * @package negocio.dao.implementacion.binario
  * @project Logistica-DAO
  */
 /**
  * @author IVANB
  *
  */
-package negocio.dao.texto;
+package negocio.dao.implementacion.binario;

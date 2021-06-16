@@ -65,6 +65,28 @@ public class EventosPanelReportesFecha implements ActionListener, FocusListener 
 			}
 
 			control.rellenaTabla(nTienda, fDesde, fHasta);
+		} else if (e.getSource().equals(this.panel.getBtnExportar())) {
+			try {
+
+				int nTienda = 0;
+				String fDesde = null;
+				String fHasta = null;
+
+				if (this.panel.getNroTienda().getText().length() > 0) {
+					nTienda = Integer.parseInt(this.panel.getNroTienda().getText());
+				}
+				if (((this.panel.getFechaDesde().getText()).replace(" ", "")).length() > 2) {
+					fDesde = this.panel.getFechaDesde().getText();
+				}
+				if (((this.panel.getFechaHasta().getText()).replace(" ", "")).length() > 2) {
+					fHasta = this.panel.getFechaHasta().getText();
+				}
+
+				control.expontar(nTienda, fDesde, fHasta);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 

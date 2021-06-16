@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 import exepciones.ValidacionesException;
 import interfaces.IController;
+import negocio.dao.factory.FactoriDAO;
 import negocio.dominio.Transacciones;
 import view.panels.PanelReportesTipo;
 
@@ -33,6 +34,7 @@ public class ControlerReportesTipo implements IController {
 
 	private ArrayList<Transacciones> transacciones;
 	private PanelReportesTipo vista;
+	private FactoriDAO daos = new FactoriDAO();
 
 	/**
 	 * 
@@ -71,7 +73,34 @@ public class ControlerReportesTipo implements IController {
 		} catch (Exception e) {
 			ValidacionesException.mostrarMensaje(e);
 		}
+	}
 
+	public void expontar(Object selectedItem) throws Exception {
+
+		try {
+			daos.setElemento("docReporteTipo");
+
+			ArrayList<String[]> objetos = new ArrayList<>();
+			String[] columnas = { "Desde", "Hasta", "Usuario", "Fecha" };
+
+			objetos.add(columnas);
+
+			List<Transacciones> transa = transacciones.stream().filter(t -> (t.getTipo().equals(selectedItem))).sorted()
+					.collect(Collectors.toList());
+
+			for (Transacciones transaccion : transa) {
+
+				String[] data = { transaccion.getDesde().getNombre(), transaccion.getHasta().getNombre(),
+						Long.toString(transaccion.getUsuario().getDni()), transaccion.getFechaString() };
+
+				objetos.add(data);
+			}
+
+			daos.getDao("transacciones_txt").saveOnFile(objetos);
+
+		} catch (Exception e) {
+			ValidacionesException.mostrarMensaje(e);
+		}
 	}
 
 	/**

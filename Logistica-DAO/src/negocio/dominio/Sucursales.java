@@ -16,13 +16,16 @@
  */
 package negocio.dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author IVANB
  *
  */
-public abstract class Sucursales {
+public abstract class Sucursales implements Serializable {
+
+	private static final long serialVersionUID = 14;
 	/**
 	 * @var int - id
 	 */

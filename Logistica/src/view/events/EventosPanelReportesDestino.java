@@ -47,6 +47,13 @@ public class EventosPanelReportesDestino implements ActionListener {
 		} else if (e.getSource().equals(this.panel.getComboDestino())) {
 
 			control.rellenaTabla(this.panel.getComboDestino().getSelectedItem());
+		} else if (e.getSource().equals(this.panel.getBtnExportar())) {
+			try {
+				control.expontar(this.panel.getComboDestino().getSelectedItem());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 

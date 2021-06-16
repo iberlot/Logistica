@@ -22,6 +22,6 @@ package interfaces;
  */
 public interface IController {
 
-	public Object initPanel();
+	public Object initPanel() throws Exception;
 
 }

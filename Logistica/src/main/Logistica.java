@@ -17,8 +17,6 @@
 package main;
 
 import java.awt.EventQueue;
-import java.io.FileReader;
-import java.util.Properties;
 
 import controller.ControlerPrincipal;
 import exepciones.ValidacionesException;
@@ -38,13 +36,13 @@ public final class Logistica {
 			public void run() {
 				try {
 
-					Properties propiedades = new Properties();
-					propiedades.load(new FileReader("config.propierties"));
+//					Properties propiedades = new Properties();
+//					propiedades.load(new FileReader("config.propierties"));
 
 					ControlerPrincipal principal = new ControlerPrincipal();
-					principal.setPropiedades(propiedades);
+//					principal.setPropiedades(propiedades);
 
-					principal.initFrame();
+					principal.initPanel();
 
 				} catch (Exception e) {
 					ValidacionesException.mostrarMensaje(e);

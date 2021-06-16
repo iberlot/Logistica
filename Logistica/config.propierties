@@ -2,8 +2,15 @@
 version=1
 titulo=Logistica
 ruta=C:\\Logistica\\
+rutaBases=Datos/
+
 #nombres de Archivos
 docSucursales=archivoSucursales
 docProductos=archivoProductos
 docTransacciones=archivoTransacciones
 docUsuarios=archivoUsuarios
+
+docHistorico=reporteHistorico.txt
+docReporteFecha=reporteFecha.txt
+docReporteDestino=reporteDestino.txt
+docReporteTipo=reporteTipo.txt

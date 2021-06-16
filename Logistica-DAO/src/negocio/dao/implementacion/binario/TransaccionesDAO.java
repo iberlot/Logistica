@@ -10,11 +10,14 @@
 /**
  * @since 13 jun. 2021
  * @user IVANB
- * @name SucursalesDAO.java
+ * @name TransaccionesDAO.java
  * @package negocio.dao
  * @project Logistica-DAO
  */
-package negocio.dao.binario;
+package negocio.dao.implementacion.binario;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import negocio.dao.iDAO;
 
@@ -22,13 +25,15 @@ import negocio.dao.iDAO;
  * @author IVANB
  *
  */
-public class SucursalesDAO implements iDAO {
+public class TransaccionesDAO<T> extends BinariosDao<T> implements iDAO<T> {
 
 	/**
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 * 
 	 */
-	public SucursalesDAO() {
-		// TODO Auto-generated constructor stub
+	public TransaccionesDAO() throws FileNotFoundException, IOException {
+		super("docTransacciones");
 	}
 
 	@Override

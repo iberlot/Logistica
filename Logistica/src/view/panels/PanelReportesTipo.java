@@ -184,4 +184,11 @@ public class PanelReportesTipo extends JPanel implements iPanels {
 		return evento;
 	}
 
+	/**
+	 * @return el campo btnExportar
+	 */
+	public JButton getBtnExportar() {
+		return btnExportar;
+	}
+
 }

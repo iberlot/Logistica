@@ -14,23 +14,27 @@ import java.util.ArrayList;
 public abstract class FileManager<T> {
 	protected File file;
 
-	public FileManager(String name) {
+	public FileManager(String name) throws IOException {
 		file = new File(name);
+		nuevoArchivo();
 	}
 
 	abstract public void saveOnFile(T object);
 
-	abstract public ArrayList<T> getFileOperationList();
+	abstract public ArrayList<T> getFileList();
 
 	public void nuevoArchivo() throws IOException {
 		// Si el archivo no existe es creado
 		if (!file.exists()) {
 			file.createNewFile();
+
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter(fw);
+
+			bw.write("");
+			bw.flush();
+			bw.close();
 		}
-		FileWriter fw = new FileWriter(file);
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write("");
-		bw.close();
 
 	}
 }

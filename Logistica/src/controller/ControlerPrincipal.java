@@ -16,9 +16,11 @@
  */
 package controller;
 
+import java.io.FileReader;
 import java.util.Properties;
 
 import interfaces.IController;
+import negocio.dao.factory.FactoriDAO;
 import negocio.dominio.Principal;
 import view.frame.FramePrincipal;
 
@@ -28,19 +30,19 @@ import view.frame.FramePrincipal;
  */
 public class ControlerPrincipal implements IController {
 
-	Principal modelo = new Principal();
-	FramePrincipal vista;
+	private Principal modelo = new Principal();
+	private FramePrincipal vista;
+	private FactoriDAO daos = new FactoriDAO();
 
-	public void initFrame() throws Exception {
+	@Override
+	public Object initPanel() throws Exception {
 		vista = new FramePrincipal(Integer.parseInt(modelo.getPropiedades().getProperty("version")),
 				modelo.getPropiedades().getProperty("titulo"));
 
 		// FIXME estoy bastante convencido de que esto no va asi pero no se como
 		// solucionarlo ahora
 
-		System.out.println(modelo.getTransacciones().get(0));
-
-		vista.getEvento().setDatos(modelo);
+		vista.getEvento().setDatos(this);
 
 		long dni = vista.logueo();
 
@@ -48,22 +50,35 @@ public class ControlerPrincipal implements IController {
 			modelo.asignarUsuarioDni(dni);
 
 			vista.setVisible(true);
+			return null;
 		} else {
 			throw new Exception("Documento no encontrado.");
 		}
 	}
 
-	/**
-	 * 
-	 */
-	public ControlerPrincipal() {
-		// TODO Auto-generated constructor stub
+	public void guardarModifiaciones() throws Exception {
+		daos.getDao("Productos").saveLista(modelo.getProductos());
+		daos.getDao("Usuarios").saveLista(modelo.getUsuarios());
+		daos.getDao("Sucursales").saveLista(modelo.getSucursales());
+		daos.getDao("Transacciones").saveLista(modelo.getTransacciones());
 	}
 
-	@Override
-	public Object initPanel() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * @throws Exception
+	 * 
+	 */
+	public ControlerPrincipal() throws Exception {
+
+		Properties propiedades = new Properties();
+		propiedades.load(new FileReader("config.propierties"));
+		modelo.setPropiedades(propiedades);
+
+		modelo.setProductos(daos.getDao("Productos").getLista());
+		modelo.setUsuarios(daos.getDao("Usuarios").getLista());
+		modelo.setSucursales(daos.getDao("Sucursales").getLista());
+		modelo.setTransacciones(daos.getDao("Transacciones").getLista());
+//		modelo.cargadatos();
+
 	}
 
 	public void setPropiedades(Properties propiedades) {

@@ -11,11 +11,14 @@ import java.util.List;
 
 public class ByteFileManager<T> extends FileManager<T> {
 
-	private List<T> objects;
+	private ArrayList<T> objects;
 
-	public ByteFileManager(String name) {
+	public ByteFileManager(String name) throws IOException {
 		super(name);
-		loadListFromFile();
+
+		if (file.length() > 0) {
+			loadListFromFile();
+		}
 	}
 
 	@Override
@@ -31,8 +34,12 @@ public class ByteFileManager<T> extends FileManager<T> {
 	}
 
 	private void loadListFromFile() {
-		try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
-			objects = (List<T>) objectInputStream.readObject();
+		try {
+			FileInputStream archi = new FileInputStream(file);
+
+			ObjectInputStream objectInputStream = new ObjectInputStream(archi);
+			objects = (ArrayList<T>) objectInputStream.readObject();
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -43,9 +50,35 @@ public class ByteFileManager<T> extends FileManager<T> {
 	}
 
 	@Override
-	public ArrayList<T> getFileOperationList() {
+	public ArrayList<T> getFileList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void saveListOnfile() {
+		try {
+			ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(file));
+
+			writer.writeObject(objects);
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @return el campo objects
+	 */
+	public List<T> getObjects() {
+		return objects;
+	}
+
+	/**
+	 * @param objects El parametro objects para setear
+	 */
+	public void setObjects(ArrayList<T> objects) {
+		this.objects = objects;
 	}
 
 }

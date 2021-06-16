@@ -186,4 +186,18 @@ public class PanelReportesDestino extends JPanel implements iPanels {
 		return evento;
 	}
 
+	/**
+	 * @return el campo btnExportar
+	 */
+	public JButton getBtnExportar() {
+		return btnExportar;
+	}
+
+	/**
+	 * @param btnExportar El parametro btnExportar para setear
+	 */
+	public void setBtnExportar(JButton btnExportar) {
+		this.btnExportar = btnExportar;
+	}
+
 }

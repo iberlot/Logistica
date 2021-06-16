@@ -10,11 +10,15 @@
 /**
  * @since 13 jun. 2021
  * @user IVANB
- * @name ProductosDAO.java
+ * @name SucursalesDAO.java
  * @package negocio.dao
  * @project Logistica-DAO
  */
-package negocio.dao.texto;
+package negocio.dao.implementacion.texto;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import negocio.dao.iDAO;
 
@@ -22,13 +26,15 @@ import negocio.dao.iDAO;
  * @author IVANB
  *
  */
-public class ProductosDAO_txt implements iDAO {
+public class SucursalesDAO_txt<T> extends TextoDao<T> implements iDAO<T> {
 
 	/**
+	 * @throws IOException
+	 * @throws FileNotFoundException
 	 * 
 	 */
-	public ProductosDAO_txt() {
-		// TODO Auto-generated constructor stub
+	public SucursalesDAO_txt() throws FileNotFoundException, IOException {
+		super("e");
 	}
 
 	@Override
@@ -45,6 +51,18 @@ public class ProductosDAO_txt implements iDAO {
 
 	@Override
 	public void save() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public ArrayList getLista() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveLista(ArrayList lista) {
 		// TODO Auto-generated method stub
 
 	}

@@ -17,45 +17,73 @@
 package negocio.dao.factory;
 
 import negocio.dao.iDAO;
-import negocio.dao.binario.DepositosDAO;
-import negocio.dao.binario.ProductosDAO;
-import negocio.dao.binario.TiendasDAO;
-import negocio.dao.binario.TransaccionesDAO;
-import negocio.dao.binario.UsuariosDAO;
-import negocio.dao.texto.DepositosDAO_txt;
-import negocio.dao.texto.ProductosDAO_txt;
-import negocio.dao.texto.TiendasDAO_txt;
-import negocio.dao.texto.TransaccionesDAO_txt;
-import negocio.dao.texto.UsuariosDAO_txt;
+import negocio.dao.implementacion.binario.DepositosDAO;
+import negocio.dao.implementacion.binario.ProductosDAO;
+import negocio.dao.implementacion.binario.SucursalesDAO;
+import negocio.dao.implementacion.binario.TiendasDAO;
+import negocio.dao.implementacion.binario.TransaccionesDAO;
+import negocio.dao.implementacion.binario.UsuariosDAO;
+import negocio.dao.implementacion.texto.DepositosDAO_txt;
+import negocio.dao.implementacion.texto.ProductosDAO_txt;
+import negocio.dao.implementacion.texto.SucursalesDAO_txt;
+import negocio.dao.implementacion.texto.TiendasDAO_txt;
+import negocio.dao.implementacion.texto.TransaccionesDAO_txt;
+import negocio.dao.implementacion.texto.UsuariosDAO_txt;
+import negocio.dominio.Depositos;
+import negocio.dominio.Productos;
+import negocio.dominio.Sucursales;
+import negocio.dominio.Tiendas;
+import negocio.dominio.Transacciones;
+import negocio.dominio.Usuarios;
 
 /**
  * @author IVANB dao = FactoriDAO.getDao("usuarios_db");
  */
 public class FactoriDAO {
 
+	private static String otro;
+
 	public static iDAO getDao(String elemento) throws Exception {
-		if (elemento.equalsIgnoreCase("depositos")) {
-			return new DepositosDAO();
-		} else if (elemento.equalsIgnoreCase("productos")) {
-			return new ProductosDAO();
-		} else if (elemento.equalsIgnoreCase("tiendas")) {
-			return new TiendasDAO();
-		} else if (elemento.equalsIgnoreCase("transacciones")) {
-			return new TransaccionesDAO();
-		} else if (elemento.equalsIgnoreCase("usuarios")) {
-			return new UsuariosDAO();
-		} else if (elemento.equalsIgnoreCase("depositos_txt")) {
-			return new DepositosDAO_txt();
+		if (elemento.equalsIgnoreCase("Depositos")) {
+			return new DepositosDAO<Depositos>();
+		} else if (elemento.equalsIgnoreCase("Productos")) {
+			return new ProductosDAO<Productos>();
+		} else if (elemento.equalsIgnoreCase("Tiendas")) {
+			return new TiendasDAO<Tiendas>();
+		} else if (elemento.equalsIgnoreCase("Transacciones")) {
+			return new TransaccionesDAO<Transacciones>();
+		} else if (elemento.equalsIgnoreCase("Usuarios")) {
+			return new UsuariosDAO<Usuarios>();
+		} else if (elemento.equalsIgnoreCase("Sucursales")) {
+			return new SucursalesDAO<Sucursales>();
+		} else if (elemento.equalsIgnoreCase("Sucursales_txt")) {
+			return new SucursalesDAO_txt<Sucursales>();
+		} else if (elemento.equalsIgnoreCase("Depositos_txt")) {
+			return new DepositosDAO_txt<Depositos>();
 		} else if (elemento.equalsIgnoreCase("productos_txt")) {
-			return new ProductosDAO_txt();
+			return new ProductosDAO_txt<Productos>(otro);
 		} else if (elemento.equalsIgnoreCase("tiendas_txt")) {
-			return new TiendasDAO_txt();
+			return new TiendasDAO_txt<Tiendas>();
 		} else if (elemento.equalsIgnoreCase("transacciones_txt")) {
-			return new TransaccionesDAO_txt();
+			return new TransaccionesDAO_txt<Transacciones>(otro);
 		} else if (elemento.equalsIgnoreCase("usuarios_txt")) {
-			return new UsuariosDAO_txt();
+			return new UsuariosDAO_txt<Usuarios>();
 		} else {
 			throw new Exception("El elemento no pertenece a alguno de los definidos.");
 		}
+	}
+
+	/**
+	 * @return el campo elemento
+	 */
+	public String getElemento() {
+		return otro;
+	}
+
+	/**
+	 * @param elemento El parametro elemento para setear
+	 */
+	public void setElemento(String elemento) {
+		this.otro = elemento;
 	}
 }

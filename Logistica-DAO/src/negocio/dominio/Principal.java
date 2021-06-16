@@ -18,6 +18,7 @@ package negocio.dominio;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -42,7 +43,12 @@ public class Principal {
 	 * 
 	 */
 	public Principal() {
+
 		// TODO Auto-generated constructor stub
+
+	}
+
+	public void cargadatos() {
 
 		usuarios.add(new Usuarios("Ivan", "Berlot", 31343046));
 		usuarios.add(new Usuarios("Alguien", "mas", 0));
@@ -147,8 +153,8 @@ public class Principal {
 	/**
 	 * @param productos El parametro productos para setear
 	 */
-	public void setProductos(ArrayList<Productos> productos) {
-		this.productos = productos;
+	public void setProductos(List<Productos> productos) {
+		this.productos = (ArrayList<Productos>) productos;
 	}
 
 	/**

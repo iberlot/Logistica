@@ -43,6 +43,13 @@ public class EventosPanelTransaccionesHistorico implements ActionListener {
 		if (e.getSource().equals(this.panel.getBtnCancelar())) {
 			this.panel.removeAll();
 			this.panel.setVisible(false);
+		} else if (e.getSource().equals(this.panel.getBtnExportar())) {
+			try {
+				control.expontar();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 

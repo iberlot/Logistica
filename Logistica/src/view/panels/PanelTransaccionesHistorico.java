@@ -42,6 +42,7 @@ public class PanelTransaccionesHistorico extends JPanel implements iPanels {
 	private JTable tabla;
 	private DefaultTableModel tableModel = new DefaultTableModel(columnas, 0);
 	private JButton btnCancelar = new JButton("Cancelar");
+	private JButton btnExportar = new JButton("Exportar");
 
 	private EventosPanelTransaccionesHistorico evento;
 
@@ -67,6 +68,8 @@ public class PanelTransaccionesHistorico extends JPanel implements iPanels {
 		JPanel botonera = new JPanel();
 		add(botonera, BorderLayout.SOUTH);
 		botonera.setLayout(new GridLayout(1, 2));
+		botonera.add(btnExportar);
+		btnExportar.addActionListener(this.evento);
 		botonera.add(btnCancelar);
 		btnCancelar.addActionListener(this.evento);
 
@@ -170,6 +173,13 @@ public class PanelTransaccionesHistorico extends JPanel implements iPanels {
 	 */
 	public EventosPanelTransaccionesHistorico getEvento() {
 		return evento;
+	}
+
+	/**
+	 * @return el campo btnExportar
+	 */
+	public JButton getBtnExportar() {
+		return btnExportar;
 	}
 
 }

@@ -16,12 +16,15 @@
  */
 package negocio.dominio;
 
+import java.io.Serializable;
+
 /**
  * @author IVANB
  *
  */
-public class Usuarios {
+public class Usuarios implements Serializable {
 
+	private static final long serialVersionUID = 11;
 	/**
 	 * @var String - nombre
 	 */

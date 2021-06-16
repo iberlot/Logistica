@@ -46,6 +46,13 @@ public class EventosPanelReportesTipo implements ActionListener {
 		} else if (e.getSource().equals(this.panel.getComboTipos())) {
 
 			control.rellenaTabla(this.panel.getComboTipos().getSelectedItem());
+		} else if (e.getSource().equals(this.panel.getBtnExportar())) {
+			try {
+				control.expontar(this.panel.getComboTipos().getSelectedItem());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 

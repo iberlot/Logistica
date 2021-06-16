@@ -14,24 +14,25 @@
  * @package negocio.dao
  * @project Logistica-DAO
  */
-package negocio.dao.texto;
+package negocio.dao.implementacion.texto;
 
-import FileManager.FileManager;
-import FileManager.StringFileManager;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import negocio.dao.iDAO;
-import negocio.dominio.Usuarios;
 
 /**
  * @author IVANB
  *
  */
-public class UsuariosDAO_txt implements iDAO {
+public class UsuariosDAO_txt<T> extends TextoDao<T> implements iDAO<T> {
 
 	/**
 	 * 
 	 */
-	public UsuariosDAO_txt() {
-		// TODO Auto-generated constructor stub
+	public UsuariosDAO_txt() throws FileNotFoundException, IOException {
+		super("a");
 	}
 
 	@Override
@@ -81,15 +82,25 @@ public class UsuariosDAO_txt implements iDAO {
 //
 //	}
 
-	private FileManager<Usuarios> fileManager;
-
-	private void Historial() {
-		fileManager = new StringFileManager<>("resources/historial.txt");
+	private void Historial() throws IOException {
+//		fileManager = new StringFileManager<>("resources/historial.txt");
 	}
 //
 //	public void registrarOperacion(Operacion operacion) {
 //		fileManager.saveOnFile(operacion);
 //	}
+
+	@Override
+	public ArrayList getLista() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveLista(ArrayList lista) {
+		// TODO Auto-generated method stub
+
+	}
 
 //	public ArrayList<Object> listar() {
 //		return fileManager.getFileOperationList();

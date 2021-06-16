@@ -19,8 +19,8 @@ package controller;
 import java.util.ArrayList;
 
 import interfaces.IController;
-import negocio.dao.binario.DepositosDAO;
 import negocio.dao.factory.FactoriDAO;
+import negocio.dao.implementacion.binario.DepositosDAO;
 import negocio.dominio.Sucursales;
 import view.panels.PanelDepositosListado;
 

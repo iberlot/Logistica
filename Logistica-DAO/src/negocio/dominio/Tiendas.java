@@ -24,6 +24,8 @@ import java.util.ArrayList;
  */
 public class Tiendas extends Sucursales {
 
+	private static final long serialVersionUID = 13;
+
 	/**
 	 * 
 	 */

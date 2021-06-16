@@ -8,27 +8,14 @@
  * totalHorasPerdidasAqui = 0
  */
 /**
- * @since 13 jun. 2021
+ * @since 15 jun. 2021
  * @user IVANB
- * @name TiendasDAO.java
- * @package negocio.dao
+ * @name package-info.java
+ * @package negocio.dao.implementacion.texto
  * @project Logistica-DAO
  */
-package negocio.dao.binario;
-
-import negocio.dao.iDAO;
-
 /**
  * @author IVANB
  *
  */
-public class TiendasDAO extends SucursalesDAO implements iDAO {
-
-	/**
-	 * 
-	 */
-	public TiendasDAO() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
+package negocio.dao.implementacion.texto;

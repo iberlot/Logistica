@@ -10,43 +10,31 @@
 /**
  * @since 13 jun. 2021
  * @user IVANB
- * @name TransaccionesDAO.java
+ * @name TiendasDAO.java
  * @package negocio.dao
  * @project Logistica-DAO
  */
-package negocio.dao.binario;
+package negocio.dao.implementacion.binario;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import FileManager.ByteFileManager;
 import negocio.dao.iDAO;
 
 /**
  * @author IVANB
  *
  */
-public class TransaccionesDAO implements iDAO {
+public class TiendasDAO<T> extends SucursalesDAO implements iDAO {
+
+	private ByteFileManager<T> manejador;
 
 	/**
 	 * 
 	 */
-	public TransaccionesDAO() {
+	public TiendasDAO() throws FileNotFoundException, IOException {
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public Object add(Object elemento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object get(Object elemento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

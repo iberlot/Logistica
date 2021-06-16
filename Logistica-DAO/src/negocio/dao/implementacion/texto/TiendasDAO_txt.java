@@ -14,21 +14,27 @@
  * @package negocio.dao
  * @project Logistica-DAO
  */
-package negocio.dao.texto;
+package negocio.dao.implementacion.texto;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import FileManager.ByteFileManager;
 import negocio.dao.iDAO;
-import negocio.dao.binario.SucursalesDAO;
+import negocio.dao.implementacion.binario.SucursalesDAO;
 
 /**
  * @author IVANB
  *
  */
-public class TiendasDAO_txt extends SucursalesDAO implements iDAO {
+public class TiendasDAO_txt<T> extends SucursalesDAO implements iDAO {
+
+	private ByteFileManager<T> manejador;
 
 	/**
 	 * 
 	 */
-	public TiendasDAO_txt() {
+	public TiendasDAO_txt() throws FileNotFoundException, IOException {
 		// TODO Auto-generated constructor stub
 	}
 

@@ -16,13 +16,16 @@
  */
 package negocio.dominio;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  * @author IVANB
  *
  */
-public class Transacciones implements Comparable<Transacciones> {
+public class Transacciones implements Comparable<Transacciones>, Serializable {
+
+	private static final long serialVersionUID = 12;
 
 	private Calendar fecha;
 	private Sucursales desde;
