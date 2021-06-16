@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name ControlerPrincipal.java
  * @package controller
  * @project Logistica
@@ -25,13 +25,29 @@ import negocio.dominio.Principal;
 import view.frame.FramePrincipal;
 
 /**
- * @author IVANB
+ * Clase de
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
  *
  */
 public class ControlerPrincipal implements IController {
 
+	/**
+	 * @var Principal modelo
+	 */
 	private Principal modelo = new Principal();
+
+	/**
+	 * @var FramePrincipal vista
+	 */
 	private FramePrincipal vista;
+
+	/**
+	 * @var FactoriDAO daos
+	 */
 	private FactoriDAO daos = new FactoriDAO();
 
 	@Override
@@ -56,6 +72,9 @@ public class ControlerPrincipal implements IController {
 		}
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	public void guardarModifiaciones() throws Exception {
 		daos.getDao("Productos").saveLista(modelo.getProductos());
 		daos.getDao("Usuarios").saveLista(modelo.getUsuarios());
@@ -65,7 +84,7 @@ public class ControlerPrincipal implements IController {
 
 	/**
 	 * @throws Exception
-	 * 
+	 *
 	 */
 	public ControlerPrincipal() throws Exception {
 
@@ -73,11 +92,11 @@ public class ControlerPrincipal implements IController {
 		propiedades.load(new FileReader("config.propierties"));
 		modelo.setPropiedades(propiedades);
 
-		modelo.setProductos(daos.getDao("Productos").getLista());
-		modelo.setUsuarios(daos.getDao("Usuarios").getLista());
-		modelo.setSucursales(daos.getDao("Sucursales").getLista());
-		modelo.setTransacciones(daos.getDao("Transacciones").getLista());
-//		modelo.cargadatos();
+//		modelo.setProductos(daos.getDao("Productos").getLista());
+//		modelo.setUsuarios(daos.getDao("Usuarios").getLista());
+//		modelo.setSucursales(daos.getDao("Sucursales").getLista());
+//		modelo.setTransacciones(daos.getDao("Transacciones").getLista());
+		modelo.cargadatos();
 
 	}
 

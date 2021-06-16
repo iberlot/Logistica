@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name ValidacionesException.java
  * @package exepciones
  * @project Logistica-DAO
@@ -21,19 +21,29 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
- * @author IVANB
+ * Clase de manejo de excepciones propio con la posibilidad de mostrar los
+ * mensajes en Alerts del sistema
+ *
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
  *
  */
 public class ValidacionesException extends IOException {
 
 	/**
-	 * 
+	 * Constructor de la clase
+	 *
 	 */
 	public ValidacionesException() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
 	 * @param message
 	 */
 	public ValidacionesException(String message) {
@@ -58,6 +68,11 @@ public class ValidacionesException extends IOException {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Muestra un dialog con el mensaje de error
+	 *
+	 * @param e Excepcion
+	 */
 	public static void mostrarMensaje(Exception e) {
 		JOptionPane.showMessageDialog(null, e.getMessage());
 	}

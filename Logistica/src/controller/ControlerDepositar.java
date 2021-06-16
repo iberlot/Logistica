@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name ControlerProductos.java
  * @package controller
  * @project Logistica
@@ -23,20 +23,32 @@ import negocio.dominio.Depositos;
 import negocio.dominio.Productos;
 import negocio.dominio.Sucursales;
 import negocio.dominio.Tiendas;
+import negocio.dominio.Transacciones;
+import negocio.dominio.Usuarios;
 import view.panels.PanelDepositar;
 
 /**
- * @author IVANB
+ * Clase controladora de las funcionalidades de la ventana Depositar
  *
+ * @author iBerlo <@> iberlot@usal.edu.ar
  */
 public class ControlerDepositar implements IController {
 
+	/*
+	 * @var ArrayList<Transacciones> transacciones
+	 */
+	private ArrayList<Transacciones> transacciones;
+
+	/**
+	 * @var Usuarios usuario
+	 */
+	private Usuarios usuario;
 	private ArrayList<Productos> productos;
 	private ArrayList<Sucursales> sucursales;
 	private PanelDepositar vista;
 
 	/**
-	 * 
+	 * Constructor de la clase sin datos
 	 */
 	public ControlerDepositar() {
 		// TODO Auto-generated constructor stub
@@ -51,8 +63,16 @@ public class ControlerDepositar implements IController {
 		return this.vista;
 	}
 
+	/**
+	 * Realiza un deposito y muestra un mensaje con el resultado
+	 *
+	 * @param desde    Tienda desde la que se envia el producto
+	 * @param hasta    Deposito a donde se envia el producto
+	 * @param producto Producto que se debe enviar
+	 */
 	public void depositar(Sucursales desde, Sucursales hasta, Productos producto) {
 		if (((Tiendas) desde).depositar(((Depositos) hasta), producto)) {
+			transacciones.add(new Transacciones(desde, hasta, producto, usuario, "depositar"));
 			vista.confirmarDeposito(producto, desde, hasta);
 
 		} else {
@@ -61,6 +81,9 @@ public class ControlerDepositar implements IController {
 		limpiar();
 	}
 
+	/**
+	 * Limpia la vista para cerrar la ventana
+	 */
 	public void limpiar() {
 
 		vista.removeAll();
@@ -107,6 +130,34 @@ public class ControlerDepositar implements IController {
 	 */
 	public void setSucursales(ArrayList<Sucursales> sucursales) {
 		this.sucursales = sucursales;
+	}
+
+	/**
+	 * @return el dato de transacciones
+	 */
+	public ArrayList<Transacciones> getTransacciones() {
+		return transacciones;
+	}
+
+	/**
+	 * @param transacciones para cargar en transacciones
+	 */
+	public void setTransacciones(ArrayList<Transacciones> transacciones) {
+		this.transacciones = transacciones;
+	}
+
+	/**
+	 * @return el dato de usuario
+	 */
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario para cargar en usuario
+	 */
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
 	}
 
 }

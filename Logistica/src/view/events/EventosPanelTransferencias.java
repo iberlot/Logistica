@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name EventosPanelTiendas.java
  * @package view.events
  * @project Logistica
@@ -25,7 +25,7 @@ import negocio.dominio.Productos;
 import view.panels.PanelTransferencias;
 
 /**
- * @author IVANB
+ * @author iBerlo <@> iberlot@usal.edu.ar
  *
  */
 public class EventosPanelTransferencias implements ActionListener {

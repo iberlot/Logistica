@@ -1,63 +1,91 @@
 @startuml
-class Tiendas [[java:Dominio.Tiendas]] {
-	+Tiendas()
-	+extraccion(producto: Productos): boolean
-	+depositar(deposito_hasta: Depositos, producto: Productos): boolean
-}
 
-class Usuarios [[java:Dominio.Usuarios]] {
-	-nombre: String
-	-apellido: String
-	-dni: long
-	-sucursal: Sucursales
-	+Usuarios()
-}
-
-class Productos [[java:Dominio.Productos]] {
-	#nombre: String
-	#descripcion: String
-	#precio: float
-}
-
-class Depositos [[java:Dominio.Depositos]] {
+class Depositos [[java:negocio.dominio.Depositos]] {
+	-{static} serialVersionUID: long
 	+Depositos()
 	+transferir(deposito_hasta: Depositos, producto: Productos): boolean
 }
-
-abstract class Sucursales [[java:Dominio.Sucursales]] {
+abstract class Sucursales [[java:negocio.dominio.Sucursales]] {
+	-{static} serialVersionUID: long
 	#id: int
 	#nombre: String
 	#provincia: String
 	#localidades: String
-	#productos: ArrayList<Productos>
 	#{static} ultimo_identificador: int
+	+Sucursales()
 	+{static} getUltimo_identificador(): int
 	+{static} setUltimo_identificador(ultimo_identificador: int): void
-	+{static} agregaUltimo_identificador(ultimo_identificador: int): void
+	+{static} agregaUltimo_identificador(): void
+	+{static} siguiente_identificado(): int
 	+agregarPrducto(producto: Productos): boolean
 	+quitarPrducto(producto: Productos): boolean
+	+setProductos(productos: ArrayList<Productos>): void
+	+toString(): String
 }
-
-abstract class Transacciones [[java:negocio.dominio.Transacciones]] {
+class Productos [[java:negocio.dominio.Productos]] {
+	-{static} serialVersionUID: long
+	#nombre: String
+	#descripcion: String
+	#precio: float
+	+Productos()
+	+toString(): String
+}
+class Usuarios [[java:negocio.dominio.Usuarios]] {
+	-{static} serialVersionUID: long
+	-nombre: String
+	-apellido: String
+	-dni: long
+	+Usuarios()
+	+toString(): String
+}
+class Principal [[java:negocio.dominio.Principal]] {
+	-propiedades: Properties
+	+Principal()
+	+cargadatos(): void
+	+buscarDni(dni: long): boolean
+	+asignarUsuarioDni(dni: long): void
+}
+class Tiendas [[java:negocio.dominio.Tiendas]] {
+	-{static} serialVersionUID: long
+	+extraccion(deposito_desde: Depositos, producto: Productos): boolean
+	+depositar(deposito_hasta: Depositos, producto: Productos): boolean
+}
+class Transacciones [[java:negocio.dominio.Transacciones]] {
+	-{static} serialVersionUID: long
 	-fecha: Calendar
-	-desde: Sucursales
-	-hasta: Sucursales
-	-producto: Productos
-	-usuario: Usuarios
 	-tipo: String
 	-{static} tipos: String[]
 	+Transacciones()
-	+setTipo(tipo: String): void
+	+{static} getTipos(): String[]
+	+compareTo(o: Transacciones): int
 }
 
-Usuarios --> "1" Sucursales : sucursal
+interface "Comparable<Transacciones>" as Comparable_Transacciones_ {
+}
+interface Serializable {
+}
+
 Sucursales <|-- Depositos
 Sucursales <|-- Tiendas
 Sucursales -> "*" Productos : productos
 
+Usuarios --> "1" Sucursales : sucursal
+
+Principal -> "1" Usuarios : usuario
+Principal -> "*" Sucursales : sucursales
+Principal -> "*" Productos : productos
+Principal -> "*" Transacciones : transacciones
+
 Transacciones --> "1" Sucursales : desde
 Transacciones --> "1" Sucursales : hasta
-Transacciones --> "1" Productos : producto
+Transacciones -> "1" Productos : producto
 Transacciones --> "1" Usuarios : usuario
+
+Comparable_Transacciones_ <|.. Transacciones
+
+Serializable <|.. Transacciones
+Serializable <|.. Usuarios
+Serializable <|.. Productos
+Serializable <|.. Sucursales
 
 @enduml

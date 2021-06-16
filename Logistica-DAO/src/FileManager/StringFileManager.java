@@ -9,12 +9,37 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+/**
+ * Clase de manejo de archivos de texto
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
+ *
+ * @param <T>
+ */
 public class StringFileManager<T> extends FileManager<T> implements AutoCloseable {
 
+	/**
+	 * Constructor de la clase
+	 *
+	 * @param name
+	 * @throws IOException
+	 */
 	public StringFileManager(String name) throws IOException {
 		super(name);
 	}
 
+	/**
+	 * Escripbe en el archivo la informacion de un arrayList de Strings separados
+	 * por el Char pasado
+	 *
+	 * @param info      - ArrayList<String[]> con los distintos campos a agregar en
+	 *                  el archivo
+	 * @param separador - char que se va a usar para separar los datos
+	 * @throws IOException
+	 */
 	public void escribeCamposSepararPor(ArrayList<String[]> info, char separador) throws IOException {
 
 		FileWriter fw = new FileWriter(file.getAbsoluteFile());
@@ -25,24 +50,33 @@ public class StringFileManager<T> extends FileManager<T> implements AutoCloseabl
 		}
 	}
 
-	public void escribeCamposSepararPor(String[] info, char separador) {
-		try {
+	/**
+	 * Escribe una linea con los campos del array separados por el caracter pasado
+	 *
+	 * @param info      Array con la informacion a cargar
+	 * @param separador Saracter con el que separar la informacion
+	 * @throws IOException
+	 */
+	public void escribeCamposSepararPor(String[] info, char separador) throws IOException {
 
-			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+		FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
 
-			for (String dato : info) {
+		for (String dato : info) {
 
-				fw.append(dato + separador);
-			}
-
-			fw.append("\n");
-			fw.close();
-
-		} catch (IOException e) {
-
+			fw.append(dato + separador);
 		}
+
+		fw.append("\n");
+		fw.close();
+
 	}
 
+	/**
+	 * Grabar un arrayList en el archivo. FIXME no funciona y me quede sin tiempo
+	 * para revisarla.
+	 *
+	 * @param object ArrayList con los objetos a cargar en el archivo
+	 */
 	public void saveOnFile(ArrayList<T> object) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
 

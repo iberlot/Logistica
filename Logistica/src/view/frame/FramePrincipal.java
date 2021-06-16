@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name FramePrincipal.java
  * @package view.frame
  * @project Logistica
@@ -31,7 +31,7 @@ import javax.swing.border.EmptyBorder;
 import view.events.EventosFramePrincipal;
 
 /**
- * @author IVANB
+ * @author iBerlo <@> iberlot@usal.edu.ar
  *
  */
 public class FramePrincipal extends JFrame {

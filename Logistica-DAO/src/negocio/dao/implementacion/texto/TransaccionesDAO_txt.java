@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name TransaccionesDAO.java
  * @package negocio.dao
  * @project Logistica-DAO
@@ -23,11 +23,24 @@ import java.util.ArrayList;
 import negocio.dao.iDAO;
 
 /**
- * @author IVANB
+ * Clase de
  *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
+ *
+ * @param <T>
  */
 public class TransaccionesDAO_txt<T> extends TextoDao<T> implements iDAO<T> {
 
+	/**
+	 * Constructor de la clase
+	 *
+	 * @param paramProp
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public TransaccionesDAO_txt(String paramProp) throws FileNotFoundException, IOException {
 		super(paramProp);
 		// TODO Auto-generated constructor stub

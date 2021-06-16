@@ -1,5 +1,6 @@
 Usuario|Desde|Hasta|Tipo|Producto|Fecha|
-30868615|moon|casa|depositar|una cosa|2001-09-07|
-30868615|casa|Aca|transferir|pendorcho|2014-04-20|
-30868615|Y Aca|Y Aca|transferir|pendorcho|1998-03-09|
-31343046|casa|El otooto|transferir|chirimbolo|2014-03-16|
+12457836|Sucursal A|Sucursal B|transferir|kactus|2005-02-06|
+12457836|Sucursal 1|Sucursal 6|transferir|una cosa|1995-05-19|
+12457836|Sucursal 1|Sucursal 5|transferir|kactus|1993-09-07|
+12345678|Sucursal 2|Sucursal 3|transferir|otra cosa|2015-11-23|
+0|Sucursal 2|Casa|transferir|plug chico|2021-06-16|

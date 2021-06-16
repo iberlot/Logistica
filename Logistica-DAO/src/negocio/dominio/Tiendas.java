@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name Tiendas.java
  * @package Dominio
  * @project Logistica-DAO
@@ -19,21 +19,33 @@ package negocio.dominio;
 import java.util.ArrayList;
 
 /**
- * @author IVANB
+ * Clase de implementacion del modelo de tiendas
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
  *
  */
 public class Tiendas extends Sucursales {
 
+	/**
+	 * Version del la clase, requerido para que la seralizacion funcione sin
+	 * problemas
+	 */
 	private static final long serialVersionUID = 13;
 
 	/**
-	 * 
+	 * Constructor de la clase
+	 *
 	 */
 	public Tiendas() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
 	 * @param id
 	 * @param nombre
 	 * @param provincia
@@ -46,18 +58,24 @@ public class Tiendas extends Sucursales {
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
 	 * @param siguiente_identificado
 	 * @param string
 	 * @param string2
 	 * @param string3
 	 */
-	public Tiendas(int siguiente_identificado, String string, String string2, String string3) {
-		super(siguiente_identificado, string, string2, string3);
+	public Tiendas(int id, String nombre, String provincia, String localidades) {
+		super(id, nombre, provincia, localidades);
 	}
 
 	/**
+	 * Extrae un producto desde un deposito y lo agrega al la lista de productos de
+	 * la Tienda
+	 *
+	 * @param deposito_desde
 	 * @param producto
-	 * @return
+	 * @return boolean
 	 */
 	public boolean extraccion(Depositos deposito_desde, Productos producto) {
 		if (agregarPrducto(producto)) {
@@ -73,7 +91,7 @@ public class Tiendas extends Sucursales {
 	/**
 	 * Extrae un producto de la tienda y lo deposita en un deposito. En caso de
 	 * exito retorna true. Si no una excepcion.
-	 * 
+	 *
 	 * @param deposito_hasta - Deposito donde se desea depositar el produto.
 	 * @param producto       - Producto a depositar.
 	 * @return true en caso de exito.

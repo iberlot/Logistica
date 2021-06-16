@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name Usuarios.java
  * @package Dominio
  * @project Logistica-DAO
@@ -19,12 +19,22 @@ package negocio.dominio;
 import java.io.Serializable;
 
 /**
- * @author IVANB
+ * Clase de
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
  *
  */
 public class Usuarios implements Serializable {
 
+	/**
+	 * Version del la clase, requerido para que la seralizacion funcione sin
+	 * problemas
+	 */
 	private static final long serialVersionUID = 11;
+
 	/**
 	 * @var String - nombre
 	 */
@@ -46,6 +56,7 @@ public class Usuarios implements Serializable {
 	private Sucursales sucursal;
 
 	/**
+	 * Constructor de la clase
 	 * 
 	 */
 	public Usuarios() {
@@ -53,10 +64,11 @@ public class Usuarios implements Serializable {
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
 	 * @param nombre
 	 * @param apellido
 	 * @param dni
-	 * @param sucursal
 	 */
 	public Usuarios(String nombre, String apellido, long dni) {
 		super();
@@ -66,6 +78,8 @@ public class Usuarios implements Serializable {
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
 	 * @param nombre
 	 * @param apellido
 	 * @param dni

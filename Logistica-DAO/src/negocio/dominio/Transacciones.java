@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name Transacciones.java
  * @package negocio.dominio
  * @project Logistica-DAO
@@ -20,30 +20,88 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- * @author IVANB
+ * Clase de
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
  *
  */
 public class Transacciones implements Comparable<Transacciones>, Serializable {
 
+	/**
+	 * Version del la clase, requerido para que la seralizacion funcione sin
+	 * problemas
+	 */
 	private static final long serialVersionUID = 12;
 
+	/**
+	 * @var Calendar fecha
+	 */
 	private Calendar fecha;
+
+	/**
+	 * @var Sucursales desde
+	 */
 	private Sucursales desde;
+
+	/**
+	 * @var Sucursales hasta
+	 */
 	private Sucursales hasta;
+
+	/**
+	 * @var Productos producto
+	 */
 	private Productos producto;
+
+	/**
+	 * @var Usuarios usuario
+	 */
 	private Usuarios usuario;
+
+	/**
+	 * @var String tipo
+	 */
 	private String tipo;
 
+	/**
+	 * Tipos permitidos de transacciones (no voy a hacer 3 clases, NO.)
+	 *
+	 * @var String[] tipos
+	 */
 	private static String tipos[] = { "transferir", "extraer", "depositar" };
 
 	/**
-	 * 
+	 * Constructor de la clase
+	 *
 	 */
 	public Transacciones() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
+	 * @param desde
+	 * @param hasta
+	 * @param producto
+	 * @param usuario
+	 * @param tipo
+	 */
+	public Transacciones(Sucursales desde, Sucursales hasta, Productos producto, Usuarios usuario, String tipo) {
+		this.fecha = Calendar.getInstance();
+		this.desde = desde;
+		this.hasta = hasta;
+		this.producto = producto;
+		this.usuario = usuario;
+		this.tipo = tipo;
+	}
+
+	/**
+	 * Constructor de la clase
+	 *
 	 * @param fecha
 	 * @param desde
 	 * @param hasta
@@ -61,11 +119,17 @@ public class Transacciones implements Comparable<Transacciones>, Serializable {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * @return devuelve un string con la fecha formateada paa mostrar por pantalla
+	 */
 	public String getFechaString() {
 		return String.format("%04d-%02d-%02d", this.getFecha().get(Calendar.YEAR),
 				this.getFecha().get(Calendar.MONTH) + 1, this.getFecha().get(Calendar.DAY_OF_MONTH));
 	}
 
+	/**
+	 * @return devuelve un string con la fecha formateada
+	 */
 	public String getFechaNumero() {
 		return String.format("%04d%02d%02d", this.getFecha().get(Calendar.YEAR),
 				this.getFecha().get(Calendar.MONTH) + 1, this.getFecha().get(Calendar.DAY_OF_MONTH));

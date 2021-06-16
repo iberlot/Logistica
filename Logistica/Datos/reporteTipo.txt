@@ -1,4 +1,4 @@
 Desde|Hasta|Usuario|Fecha|
-Y Aca|Y Aca|30868615|1998-03-09|
-casa|El otooto|31343046|2014-03-16|
-casa|Aca|30868615|2014-04-20|
+Casa|Sucursal 9|12457836|1992-08-03|
+Sucursal A|Sucursal 6|12345678|1992-09-06|
+Sucursal 2|Sucursal 9|0|2005-03-27|

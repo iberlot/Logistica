@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name Principal.java
  * @package negocio.dominio
  * @project Logistica-DAO
@@ -22,25 +22,48 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @author IVANB
+ *
+ * Clase prinsipal del sistema. Organiza toda la informacion a ser usada durante
+ * la vida del programa.
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
  *
  */
 public class Principal {
 
+	/**
+	 * @var Usuarios usuario que usa la aplicacion
+	 */
 	private Usuarios usuario;
 
+	/**
+	 * @var ArrayList<Usuarios> usuarios
+	 */
 	private ArrayList<Usuarios> usuarios = new ArrayList<>();
 
+	/**
+	 * @var ArrayList<Sucursales> sucursales
+	 */
 	private ArrayList<Sucursales> sucursales = new ArrayList<>();
 
+	/**
+	 * @var ArrayList<Productos> productos
+	 */
 	private ArrayList<Productos> productos = new ArrayList<>();
 
+	/**
+	 * @var ArrayList<Transacciones> transacciones
+	 */
 	private ArrayList<Transacciones> transacciones = new ArrayList<>();
 
+	/**
+	 * @var Properties propiedades
+	 */
 	private Properties propiedades;
 
 	/**
-	 * 
+	 * Constructor de la clase
+	 *
 	 */
 	public Principal() {
 
@@ -48,39 +71,104 @@ public class Principal {
 
 	}
 
+	/**
+	 * Busca un usuario en la lista en base al numero de documento
+	 *
+	 * @param dni documento a buscar
+	 * @return boolean
+	 */
+	public boolean buscarDni(long dni) {
+		// TODO Auto-generated method stub
+		for (Usuarios usuario : usuarios) {
+			if (usuario.getDni() == dni) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Asigna un usuario como el que esta usando la aplicacion en base a un numero
+	 * de documento
+	 *
+	 * @param dni documento a buscar
+	 */
+	public void asignarUsuarioDni(long dni) {
+		// TODO Auto-generated method stub
+		for (Usuarios usuario : usuarios) {
+			if (usuario.getDni() == dni) {
+				this.usuario = usuario;
+			}
+		}
+	}
+
+	/**
+	 * Carga datos de prueba en el sistema
+	 */
 	public void cargadatos() {
 
+		usuarios.add(new Usuarios("Super", "Admin", 0));
+		usuarios.add(new Usuarios("Profesor", "Programacion", 9));
+		usuarios.add(new Usuarios("Kamisama", "Satoshi", 12345678));
+		usuarios.add(new Usuarios("Elsa", "Lado", 25361485));
+		usuarios.add(new Usuarios("Lucia", "Fernanda", 66600666));
+		usuarios.add(new Usuarios("Cosme", "Fulanito", 12457836));
 		usuarios.add(new Usuarios("Ivan", "Berlot", 31343046));
-		usuarios.add(new Usuarios("Alguien", "mas", 0));
 		usuarios.add(new Usuarios("Julia", "Ponti", 30868615));
 
 		productos.add(new Productos("una cosa", "una cosa", 10));
 		productos.add(new Productos("otra cosa", "otra cosa", 20));
-		productos.add(new Productos("mas cosa", "mas cosa", 300));
+		productos.add(new Productos("mas cosas", "mas cosas", 300));
 		productos.add(new Productos("chirimbolo", "chirimbolo", 40));
 		productos.add(new Productos("cachivache", "cachivache", 50));
 		productos.add(new Productos("pendorcho", "pendorcho", 550));
 		productos.add(new Productos("americano venoso masizo", "americano venoso masizo", 330));
+		productos.add(new Productos("Aladino", "Pensabas que nunca ibas a encontrarte con la lámpara de Aladino.", 95));
+		productos.add(new Productos("peter vertebrado", "No es Peter Pan... Pero parece.", 550));
+		productos.add(new Productos("super-super", "Recomendado para expertos.", 125));
+		productos.add(new Productos("realistico 8 pulgadas gel", "Compuesto con gel de siliconas súper blando.", 200));
+		productos.add(new Productos("brad grande", "Es un pájaro? es un avión?", 340));
+		productos.add(new Productos("kactus", "desde la base de Kactus se desprende una saliente", 90));
+		productos.add(new Productos("espada jedy", "El placer compartido siempre es mejor.", 200));
+		productos.add(new Productos("inexpulsable", "pequeña pausa entre cada esfera", 90));
+		productos.add(new Productos("hot finger medieval", "Este hot finger posee unas púas muy suaves", 95));
+		productos.add(new Productos("plug chico", "Súper-recontra-clásico", 90));
+		productos.add(new Productos("safary comun", "Con una cabeza de león esculpida en su base", 115));
 
-		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Aca", "Buenos Aires", "Merlo"));
-		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Aca tambien", "Buenos Aires", "Merlo"));
-		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Y Aca", "Buenos Aires", "Merlo"));
-		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "moon", "Sistema solar", "La luna"));
-		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sexitas", "Buenos Aires", "Caballito"));
-		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "casa", "Buenos Aires", "Lujan"));
-		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "El otooto", "Tucuman", "Tucuman"));
-		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Acasdasd", "Buenos Aires", "Merlo"));
+		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Casa", "Buenos Aires", "Lujan"));
+		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sucursal 1", "Oita", "Oita"));
+		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Sucursal 2", "Hiroshima", "Hiroshima"));
+		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sucursal 3", "Osaka", "Kobe"));
+		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Sucursal 4", "Osaka", "Kioto"));
+		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sucursal 5", "Nagasaki", "Nagasaki"));
+		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Sucursal 6", "Nagoya", "Nagoya"));
+		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sucursal 7", "Osaka", "Osaka"));
+		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sucursal 8", "Sapporo", "Sapporo"));
+		sucursales.add(new Tiendas(Sucursales.siguiente_identificado(), "Sucursal 9", "Sendai", "Sendai"));
+		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Sucursal A", "Yokohama", "Yokohama"));
+		sucursales.add(new Depositos(Sucursales.siguiente_identificado(), "Sucursal B", "Tokio", "Tokio"));
+
+		usuarios.add(new Usuarios("Super", "Admin", 0));
+		usuarios.add(new Usuarios("Profesor", "Programacion", 9));
+		usuarios.add(new Usuarios("Kamisama", "Satoshi", 12345678,
+				sucursales.get((int) (Math.random() * ((sucursales.size()))))));
+		usuarios.add(
+				new Usuarios("Elsa", "Lado", 25361485, sucursales.get((int) (Math.random() * ((sucursales.size()))))));
+		usuarios.add(new Usuarios("Lucia", "Fernanda", 66600666,
+				sucursales.get((int) (Math.random() * ((sucursales.size()))))));
+		usuarios.add(new Usuarios("Cosme", "Fulanito", 12457836,
+				sucursales.get((int) (Math.random() * ((sucursales.size()))))));
+		usuarios.add(new Usuarios("Ivan", "Berlot", 31343046,
+				sucursales.get((int) (Math.random() * ((sucursales.size()))))));
+		usuarios.add(new Usuarios("Julia", "Ponti", 30868615,
+				sucursales.get((int) (Math.random() * ((sucursales.size()))))));
 
 		for (Sucursales sucursal : sucursales) {
 
 			for (int i = 0; i < ((int) (Math.random() * (15))); i++) {
-				sucursal.getProductos().add(productos.get(((int) (Math.random() * ((0 + productos.size()))))));
+				sucursal.getProductos().add(productos.get(((int) (Math.random() * ((productos.size()))))));
 			}
 		}
-
-		usuarios.add(new Usuarios("Ivan", "Berlot", 31343046));
-		usuarios.add(new Usuarios("Alguien", "mas", 0));
-		usuarios.add(new Usuarios("Julia", "Ponti", 30868615));
 
 		for (int i = 0; i < ((int) (Math.random() * ((5 + 50) - 1))); i++) {
 
@@ -185,30 +273,4 @@ public class Principal {
 		this.propiedades = propiedades;
 	}
 
-	/**
-	 * @param dni
-	 * @return
-	 */
-	public boolean buscarDni(long dni) {
-		// TODO Auto-generated method stub
-		for (Usuarios usuario : usuarios) {
-			if (usuario.getDni() == dni) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * @param dni
-	 * @return
-	 */
-	public void asignarUsuarioDni(long dni) {
-		// TODO Auto-generated method stub
-		for (Usuarios usuario : usuarios) {
-			if (usuario.getDni() == dni) {
-				this.usuario = usuario;
-			}
-		}
-	}
 }

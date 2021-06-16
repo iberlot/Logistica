@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name Productos.java
  * @package Dominio
  * @project Logistica-DAO
@@ -19,11 +19,15 @@ package negocio.dominio;
 import java.io.Serializable;
 
 /**
- * @author IVANB
+ * @author iBerlo <@> iberlot@usal.edu.ar
  *
  */
 public class Productos implements Serializable {
 
+	/**
+	 * Version del la clase, requerido para que la seralizacion funcione sin
+	 * problemas
+	 */
 	private static final long serialVersionUID = 10;
 
 	/**
@@ -41,10 +45,16 @@ public class Productos implements Serializable {
 	 */
 	protected float precio;
 
+	/**
+	 * Constructor de la clase
+	 * 
+	 */
 	public Productos() {
 	}
 
 	/**
+	 * Constructor de la clase
+	 *
 	 * @param nombre
 	 * @param descripcion
 	 * @param precio

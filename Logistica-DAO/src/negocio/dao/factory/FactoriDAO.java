@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name FactoriDAO.java
  * @package negocio.dao.factory
  * @project Logistica-DAO
@@ -37,12 +37,30 @@ import negocio.dominio.Transacciones;
 import negocio.dominio.Usuarios;
 
 /**
- * @author IVANB dao = FactoriDAO.getDao("usuarios_db");
+ * Clase de factoria para los daos
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
+ *
  */
 public class FactoriDAO {
 
+	/**
+	 * Parametro adicional utilizado para pasarla a determinados daos.
+	 *
+	 * @var String otro
+	 */
 	private static String otro;
 
+	/**
+	 * Roetorna un objeto nuevo del dao seleccionado
+	 *
+	 * @param elemento - Tipo de dao a retornar
+	 * @return
+	 * @throws Exception
+	 */
 	public static iDAO getDao(String elemento) throws Exception {
 		if (elemento.equalsIgnoreCase("Depositos")) {
 			return new DepositosDAO<Depositos>();

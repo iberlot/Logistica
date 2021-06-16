@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name PanelReportesDestino.java
  * @package javax.swing
  * @project Logistica
@@ -35,7 +35,7 @@ import negocio.dominio.Transacciones;
 import view.events.EventosPanelReportesDestino;
 
 /**
- * @author IVANB
+ * @author iBerlo <@> iberlot@usal.edu.ar
  *
  */
 public class PanelReportesDestino extends JPanel implements iPanels {

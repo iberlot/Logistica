@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 15 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name BinariosDao.java
  * @package negocio.dao.implementacion.binario
  * @project Logistica-DAO
@@ -26,18 +26,33 @@ import FileManager.StringFileManager;
 import negocio.dao.iDAO;
 
 /**
- * @author IVANB
+ * Clase de
  *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
+ *
+ * @param <T>
  */
 public abstract class TextoDao<T> implements iDAO<T> {
 
+	/**
+	 * @var StringFileManager<T> manejador
+	 */
 	protected StringFileManager<T> manejador;
+
+	/**
+	 * @var String rutaArchivo
+	 */
 	protected String rutaArchivo;
 
 	/**
-	 * @throws IOException
+	 * Constructor de la clase
+	 *
+	 * @param paramProp
 	 * @throws FileNotFoundException
-	 * 
+	 * @throws IOException
 	 */
 	protected TextoDao(String paramProp) throws FileNotFoundException, IOException {
 

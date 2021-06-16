@@ -9,10 +9,31 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase de manejo de archivos de tipo bite
+ *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
+ *
+ * @param <T>
+ */
 public class ByteFileManager<T> extends FileManager<T> {
 
+	/**
+	 * Para simplificar el tebajo con listas
+	 *
+	 * @var ArrayList<T> objects
+	 */
 	private ArrayList<T> objects;
 
+	/**
+	 * Constructor de la clase
+	 *
+	 * @param name
+	 * @throws IOException
+	 */
 	public ByteFileManager(String name) throws IOException {
 		super(name);
 
@@ -33,6 +54,9 @@ public class ByteFileManager<T> extends FileManager<T> {
 		}
 	}
 
+	/**
+	 * Carga el ArrayList objects con la informacion del archivo
+	 */
 	private void loadListFromFile() {
 		try {
 			FileInputStream archi = new FileInputStream(file);
@@ -55,6 +79,9 @@ public class ByteFileManager<T> extends FileManager<T> {
 		return null;
 	}
 
+	/**
+	 * Guarda el ArrayList objects en el archivo
+	 */
 	public void saveListOnfile() {
 		try {
 			ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(file));

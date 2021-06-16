@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name TiendasDAO.java
  * @package negocio.dao
  * @project Logistica-DAO
@@ -23,15 +23,27 @@ import FileManager.ByteFileManager;
 import negocio.dao.iDAO;
 
 /**
- * @author IVANB
+ * Clase de
  *
+ * @author iBerlo <@> iberlot@usal.edu.ar
+ * @since 16 jun. 2021
+ * @version 0.0 Creacion del archivo.
+ *
+ *
+ * @param <T>
  */
 public class TiendasDAO<T> extends SucursalesDAO implements iDAO {
 
+	/**
+	 * @var ByteFileManager<T> manejador
+	 */
 	private ByteFileManager<T> manejador;
 
 	/**
-	 * 
+	 * Constructor de la clase
+	 *
+	 * @throws FileNotFoundException
+	 * @throws IOException
 	 */
 	public TiendasDAO() throws FileNotFoundException, IOException {
 		// TODO Auto-generated constructor stub

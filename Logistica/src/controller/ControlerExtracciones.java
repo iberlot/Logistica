@@ -5,11 +5,11 @@
  * Asi que, si esta tratando de 'optimizar' esta rutina y fracasa (seguramente),
  * por favor, incremente el siguiente contador como una advertencia para el
  * siguiente colega:
- * totalHorasPerdidasAqui = 0
+ * totalHorasPerdidasAqui = 60
  */
 /**
  * @since 13 jun. 2021
- * @user IVANB
+ * @user iBerlo <@> iberlot@usal.edu.ar
  * @name ControlerSucursales.java
  * @package controller
  * @project Logistica
@@ -23,20 +23,30 @@ import negocio.dominio.Depositos;
 import negocio.dominio.Productos;
 import negocio.dominio.Sucursales;
 import negocio.dominio.Tiendas;
+import negocio.dominio.Transacciones;
+import negocio.dominio.Usuarios;
 import view.panels.PanelExtracciones;
 
 /**
- * @author IVANB
+ * @author iBerlo <@> iberlot@usal.edu.ar
  *
  */
 public class ControlerExtracciones implements IController {
 
+	/**
+	 * @var ArrayList<Transacciones> transacciones
+	 */
+	private ArrayList<Transacciones> transacciones;
+	/**
+	 * @var Usuarios usuario
+	 */
+	private Usuarios usuario;
 	private ArrayList<Productos> productos;
 	private ArrayList<Sucursales> sucursales;
 	private PanelExtracciones vista;
 
 	/**
-	 * 
+	 *
 	 */
 	public ControlerExtracciones() {
 		// TODO Auto-generated constructor stub
@@ -53,6 +63,8 @@ public class ControlerExtracciones implements IController {
 
 	public void extraer(Sucursales desde, Sucursales hasta, Productos producto) {
 		if (((Tiendas) desde).extraccion(((Depositos) hasta), producto)) {
+			transacciones.add(new Transacciones(desde, hasta, producto, usuario, "extraer"));
+
 			vista.confirmarExtraxion(producto, desde, hasta);
 
 		} else {
@@ -107,6 +119,34 @@ public class ControlerExtracciones implements IController {
 	 */
 	public void setSucursales(ArrayList<Sucursales> sucursales) {
 		this.sucursales = sucursales;
+	}
+
+	/**
+	 * @return el dato de transacciones
+	 */
+	public ArrayList<Transacciones> getTransacciones() {
+		return transacciones;
+	}
+
+	/**
+	 * @param transacciones para cargar en transacciones
+	 */
+	public void setTransacciones(ArrayList<Transacciones> transacciones) {
+		this.transacciones = transacciones;
+	}
+
+	/**
+	 * @return el dato de usuario
+	 */
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+
+	/**
+	 * @param usuario para cargar en usuario
+	 */
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
 	}
 
 }
