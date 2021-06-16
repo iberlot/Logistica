@@ -92,11 +92,11 @@ public class ControlerPrincipal implements IController {
 		propiedades.load(new FileReader("config.propierties"));
 		modelo.setPropiedades(propiedades);
 
-//		modelo.setProductos(daos.getDao("Productos").getLista());
-//		modelo.setUsuarios(daos.getDao("Usuarios").getLista());
-//		modelo.setSucursales(daos.getDao("Sucursales").getLista());
-//		modelo.setTransacciones(daos.getDao("Transacciones").getLista());
-		modelo.cargadatos();
+		modelo.setProductos(daos.getDao("Productos").getLista());
+		modelo.setUsuarios(daos.getDao("Usuarios").getLista());
+		modelo.setSucursales(daos.getDao("Sucursales").getLista());
+		modelo.setTransacciones(daos.getDao("Transacciones").getLista());
+//		modelo.cargadatos();
 
 	}
 
